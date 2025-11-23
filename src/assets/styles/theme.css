@@ -1,0 +1,51 @@
+/* Default Theme */
+
+body[data-theme="default"] {
+    --bs-primary: #0d6efd;
+    --input-bg: #fff;
+    --input-border: #ced4da;
+    --input-radius: 6px;
+    --input-focus: #0d6efd;
+    --input-shadow: rgba(13, 110, 253, 0.25);
+}
+
+
+/* Dark Theme */
+
+body[data-theme="dark"] {
+    --bs-primary: #6610f2;
+    --input-bg: #1e1e1e;
+    --input-border: #444;
+    --input-radius: 6px;
+    --input-focus: #6610f2;
+    --input-shadow: rgba(102, 16, 242, 0.5);
+}
+
+
+/* Rounded Theme */
+
+body[data-theme="rounded"] {
+    --bs-primary: #ff9800;
+    --input-bg: #fff7e6;
+    --input-border: #ff9800;
+    --input-radius: 12px;
+    --input-focus: #ff9800;
+    --input-shadow: rgba(255, 152, 0, 0.35);
+}
+
+
+/* Bootstrap Input Override */
+
+
+/* 
+.form-control {
+    background-color: var(--input-bg) !important;
+    border: 1px solid var(--input-border) !important;
+    border-radius: var(--input-radius) !important;
+    transition: 0.2s ease;
+}
+
+.form-control:focus {
+    border-color: var(--input-focus) !important;
+    box-shadow: 0 0 0 0.25rem var(--input-shadow) !important;
+} */
