@@ -1,8 +1,8 @@
 import React from "react";
 import { Navbar, Container, Row, Col, Form, Button, Dropdown } from "react-bootstrap";
-import searchIcon from "./../assets/img/icons/search-icon.png"
-import notificationIcon from "./../assets/img/icons/notification-icon.png"
-import LogoIcon from "./../assets/img/logo/logo.png"
+import searchIcon from "../../assets/img/icons/search-icon.png"
+import notificationIcon from "../../assets/img/icons/notification-icon.png"
+import LogoIcon from "../../assets/img/logo/logo.png"
 const Header = () => {
     return (
         <header className="header-content">
