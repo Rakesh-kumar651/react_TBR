@@ -1,3 +1,33 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+*,
+:after,
+:before {
+    box-sizing: border-box
+}
+
+html {
+    font-size: 14px
+}
+
+@media(min-width: 992px) {
+    html {
+        font-size: 16px
+    }
+}
+
+body {
+    background-color: #f9f9fa;
+    color: #000;
+    font-family: Figtree, sans-serif;
+    font-weight: 400;
+    line-height: 1.5
+}
+
+
 /* header style */
 
 .navbar {
@@ -20,21 +50,6 @@
     display: block;
     height: auto;
     width: 130px;
-}
-
-.actionbtn,
-.action-btn .action-dropdown-nav {
-    text-decoration: none;
-    background-color: #f5f5f5;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    border: solid 1px #f5f5f5;
-    transition: all 0.3s ease;
 }
 
 .notify-actionbtn {
@@ -165,3 +180,71 @@ textarea {
     border-color: #e4e4e4;
     color: #777;
 }
+
+
+/* device list page  start */
+
+.card-title-img {
+    width: 22px;
+}
+
+.actionbtn img {
+    width: 17px;
+    height: auto;
+    transition: all 0.3s ease;
+}
+
+.actionbtn:hover img {
+    transform: scale(0.8);
+}
+
+.asset_landing_card {
+    background: #fff;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 2px 10px -3px hsla(0, 0%, 80%, .25);
+    padding: 16px !important;
+}
+
+.asset_landing_card .top_asset_container {
+    display: flex;
+}
+
+.asset_landing_card .top_asset_container .asset_icon_container {
+    background: #f3f3f3;
+    border-radius: 50px !important;
+    flex-shrink: 0;
+    height: 40px;
+    width: 40px;
+}
+
+.asset_landing_card .top_asset_container .asset_content_container {
+    flex-grow: 1;
+}
+
+.asset_landing_card .top_asset_container .asset_content_container .asset_head_container .asset_head {
+    color: #000;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-bottom: 0;
+}
+
+.asset_landing_card .top_asset_container .asset_content_container .asset_head_container {
+    min-height: 15px;
+}
+
+#deviceContainer0content {
+    min-height: 30px;
+}
+
+.asset_landing_card .top_asset_container .asset_content_container .asset_description_container .asset_content {
+    color: #777;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 15px;
+}
+
+
+/* device list page  end */
