@@ -26,7 +26,7 @@ function App() {
       <Route
         element={
           <ProtectedRoute>
-            <MainLayout />
+            <DeviceManagementLayout />
           </ProtectedRoute>
         }
       >
@@ -38,7 +38,7 @@ function App() {
       <Route
         element={
           <ProtectedRoute>
-            <MainLayout1 />
+            <UtilitiesLayout />
           </ProtectedRoute>
         }
       >
