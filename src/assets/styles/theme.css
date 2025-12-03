@@ -1,22 +1,90 @@
-/* Default Theme */
+/* =========================================
+   GLOBAL ROOT VARIABLES
+========================================= */
 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* =======================================================
+   BOOTSTRAP 5 OVERRIDE FILE (FULL VARIABLE VERSION)
+   All colors, shadows, radiuses, spacings → CSS Variables
+========================================================== */
+
+
+/* GLOBAL VARIABLES */
+
+:root {
+    --font-primary: "Figtree", sans-serif;
+    --font-secondary: "Poppins", sans-serif;
+    /* Common colors */
+    --color-white: #ffffff;
+    --color-black: #000000;
+    --color-gray-100: #f5f5f5;
+    --color-gray-200: #e9ecef;
+    --color-gray-300: #e4e4e4;
+    --color-gray-400: #ccc;
+    --color-gray-700: #20232d;
+    /* Card */
+    --card-title-size: 20px;
+    /* Action buttons */
+    --action-bg: #f5f5f5;
+    --action-border: #f5f5f5;
+    --action-outline-border: #ccc;
+    /* Pagination */
+    --pagination-bg: #fff;
+    --pagination-box-shadow: 0 2px 10px -4px #ccc;
+    --pagination-item-bg: #f3f3f3;
+    --pagination-active-bg: #000;
+    --pagination-active-color: #fff;
+    --pagination-disabled-bg: #e9ecef;
+    /* Custom Pagination Input */
+    --go-input-bg: #fff;
+    --go-input-border: #e4e4e4;
+    --go-button-bg: #20232d;
+    --go-button-color: #fff;
+    /* Shadows */
+    --shadow-soft: 0 2px 10px -4px #ccc;
+}
+
+
+/* =======================================================
+   THEMES
+========================================================== */
+
+
+/* DEFAULT THEME */
+
 body[data-theme="default"] {
-    --bs-body-font-family: "Figtree", sans-serif;
+    --bs-body-font-family: var(--font-primary);
+    /* Primary */
     --bs-primary: #0d6efd;
+    --bs-primary-rgb: 13, 110, 253;
+    --bs-secondary-bg-subtle: #f3f3f3;
+    --bs-border-radius-xxl: 25px;
+    --bs-smbtn-padding-x: 0.9rem;
+    /* Input */
     --input-bg: #fff;
     --input-border: #ced4da;
     --input-radius: 6px;
     --input-focus: #0d6efd;
     --input-shadow: rgba(13, 110, 253, 0.25);
-    --title-font-size: 20px;
-    --bs-primary-rgb: rgba(0, 167, 165, 0.08);
-    --bs-badge-create-color: #00A7A5;
+    /* Titles */
+    --title-font-size: 1.5rem;
+    /* Badge Colors */
+    --bs-badge-create-bgcolor: #00a7a41f;
+    --bs-badge-ready-bgcolor: rgba(237, 147, 27, 0.08);
+    --bs-badge-live-bgcolor: rgba(91, 175, 0, 0.08);
+    --bs-badge-initiated-bgcolor: rgba(0, 136, 203, 0.08);
+    --bs-badge-down-bgcolor: rgba(217, 63, 33, 0.08);
+    --bs-badge-create-color: #00a7a5;
+    --bs-badge-ready-color: #ed931b;
+    --bs-badge-live-color: #5baf00;
+    --bs-badge-initiated-color: #0088cb;
+    --bs-badge-down-color: #d93f21;
 }
 
 
-/* Dark Theme */
+/* DARK THEME */
 
 body[data-theme="dark"] {
     --bs-primary: #6610f2;
@@ -28,7 +96,7 @@ body[data-theme="dark"] {
 }
 
 
-/* Rounded Theme */
+/* ROUNDED THEME */
 
 body[data-theme="rounded"] {
     --bs-primary: #ff9800;
@@ -40,25 +108,33 @@ body[data-theme="rounded"] {
 }
 
 
-/* Bootstrap Input Override */
+/* =======================================================
+   BOOTSTRAP COMPONENT OVERRIDES
+========================================================== */
+
+
+/* FONT SIZE */
 
 .fs-7 {
     font-size: 14px;
 }
 
 
-/* main content card header start */
+/* CARD TITLE */
 
 .card-title {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     font-size: var(--title-font-size);
     font-weight: 600;
 }
 
+
+/* ACTION BUTTONS */
+
 .actionbtn,
 .action-btn .action-dropdown-nav {
     text-decoration: none;
-    background-color: #f5f5f5;
+    background-color: var(--action-bg);
     border-radius: 50%;
     width: 35px;
     height: 35px;
@@ -66,19 +142,27 @@ body[data-theme="rounded"] {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border: solid 1px #f5f5f5;
+    border: solid 1px var(--action-border);
     transition: all 0.3s ease;
 }
 
 .actionbtn-outline,
 .action-btn-outline .action-dropdown-nav {
     background-color: transparent;
-    border: solid 1px #ccc;
+    border: solid 1px var(--action-outline-border);
 }
 
 .actionbtn>* {
     pointer-events: none;
 }
+
+.actionbtn:hover {
+    background-color: var(--color-white);
+    border-color: var(--color-black);
+}
+
+
+/* FILTER CONTAINER */
 
 .filter-container {
     display: flex;
@@ -93,18 +177,367 @@ a:not([href]):hover {
     text-decoration: none;
 }
 
-.actionbtn:hover {
-    background-color: var(--bs-white);
-    border-color: var(--bs-black);
-}
+
+/* BADGES */
 
 .badge {
     width: 100px;
+    border-radius: 25px;
+    padding: 0.25rem 1rem !important;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
 }
 
-.badge.create-badge {
-    background-color: var(--bs-badge-create-color);
+.badge.create-badge,
+.badge.activated-badge {
+    background-color: var(--bs-badge-create-bgcolor);
+    color: var(--bs-badge-create-color);
+}
+
+.badge.ready-badge {
+    background-color: var(--bs-badge-ready-bgcolor);
+    color: var(--bs-badge-ready-color);
+}
+
+.badge.live-badge {
+    background-color: var(--bs-badge-live-bgcolor);
+    color: var(--bs-badge-live-color);
+}
+
+.badge.initiated-badge {
+    background-color: var(--bs-badge-initiated-bgcolor);
+    color: var(--bs-badge-initiated-color);
+}
+
+.badge.down-badge,
+.badge.failed-badge {
+    background-color: var(--bs-badge-down-bgcolor);
+    color: var(--bs-badge-down-color);
 }
 
 
-/* main content card header start */
+/* PAGINATION */
+
+.pagination {
+    align-items: center;
+    background: var(--pagination-bg);
+    border-radius: 50px;
+    box-shadow: var(--pagination-box-shadow);
+    display: flex;
+    padding: 5px;
+    gap: 5px;
+}
+
+.pagination .page-item.active>.page-link {
+    background: var(--pagination-active-bg);
+    color: var(--pagination-active-color);
+}
+
+.pagination .disabled>.page-link,
+.page-link.disabled {
+    background: var(--pagination-disabled-bg);
+}
+
+.pagination .page-link {
+    background: var(--pagination-item-bg);
+    border-radius: 50%;
+    border: 0;
+    box-shadow: var(--shadow-soft);
+    color: var(--color-gray-700);
+    height: 35px;
+    width: 35px;
+    display: flex;
+    font-size: 1rem;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin: 0 2px;
+}
+
+
+/* CUSTOM PAGINATION (GO INPUT) */
+
+.custom-pagination .go-input-group {
+    background: var(--color-white);
+    border-radius: 50px;
+    box-shadow: var(--shadow-soft);
+    padding: 5px;
+}
+
+.custom-pagination .page-go-input {
+    background-color: var(--go-input-bg);
+    border: 1px solid var(--go-input-border);
+    border-radius: 25px;
+    height: 25px;
+    padding-left: 10px;
+    width: 50px;
+}
+
+.custom-pagination .page-go-btn {
+    background-color: var(--go-button-bg) !important;
+    color: var(--go-button-color) !important;
+    border-radius: 50px;
+    height: 35px;
+    width: 35px;
+    padding: 0 !important;
+    box-shadow: var(--shadow-soft);
+}
+
+
+/* table */
+
+.custom-table .table {
+    border-collapse: separate;
+    border-spacing: 0 15px;
+    vertical-align: middle;
+}
+
+
+/* Pull the first row up to remove the unwanted top gap */
+
+.custom-table .table tbody tr:first-child {
+    margin-top: -15px;
+    /* exactly cancel the 15px border-spacing */
+}
+
+.custom-table .table>thead>tr {
+    border: 0px;
+}
+
+.custom-table .table> :not(caption):first-child>tr>th {
+    background-color: transparent;
+    font-size: 0.8rem;
+    color: #777;
+    border: none;
+}
+
+.td_sn,
+.custom-table .table tr .dropdown.btn-group .dropdown-toggle {
+    color: #222;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    align-content: center;
+    background-color: #f3f3f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.custom-table .table tbody>tr.active-table-row td,
+.custom-table .table tbody>tr:hover td {
+    background-color: #20232d;
+    color: #fff;
+}
+
+.custom-table .table tbody>tr td {
+    border: none;
+    box-shadow: 0px 5px 15px -15px #cccccc;
+}
+
+.custom-table .table tbody>tr td:first-child {
+    border-radius: 25px 0 0 25px;
+}
+
+.custom-table .table tbody>tr td:last-child {
+    border-radius: 0 25px 25px 0px;
+}
+
+.custom-table .table tr .dropdown.btn-group .dropdown-toggle::after {
+    display: none;
+}
+
+.dropdown-menu.show {
+    border: none;
+    box-shadow: 1px 0px 8px -3px #cccccc;
+    animation-name: actiondpactive;
+    animation-timing-function: ease;
+    animation-fill-mode: forwards;
+    animation-duration: 0.3s;
+    padding: 0px 5px;
+}
+
+a.dropdown-item {
+    padding: 0.3rem 0.5rem;
+    background-color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    text-wrap: nowrap;
+    font-size: 0.8rem;
+    color: #222;
+    text-align: left;
+}
+
+@keyframes actiondpactive {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(0px);
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0px);
+    }
+}
+
+
+/* modal */
+
+.modal .modal-header {
+    border: none;
+    padding-bottom: 0px;
+}
+
+.modal .modal-header .modal-title {
+    font-size: 18px;
+}
+
+.modal .modal-content {
+    border-radius: 25px;
+    border: none;
+}
+
+.modal .modal-content .modal-footer button {
+    min-width: 100px;
+    padding: 0.3rem 1rem;
+}
+
+.drop-area {
+    background: #ffffff;
+    border-radius: 25px;
+    padding: 10px 15px;
+    text-align: center;
+    position: relative;
+    transition: 0.2s ease-in-out;
+    box-shadow: 0px 2px 10px -4px #cccccc;
+}
+
+.drop-area.drop-hover {
+    background: #f0f8ff;
+    border-color: #c7e2ff;
+}
+
+.upload-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 15px;
+}
+
+.drop-text {
+    color: #bfbfbf;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+.file-input {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+}
+
+
+/* form style */
+
+.custom-check {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.custom-check input {
+    display: none;
+}
+
+
+/* Outer circle */
+
+.custom-check .checkmark {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #777777;
+    /* Bootstrap primary */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease-in-out;
+}
+
+
+/* Tick hidden first */
+
+.custom-check .checkmark::after {
+    content: "✔";
+    font-size: 11px;
+    color: #0088cb;
+    display: none;
+}
+
+
+/* When checked */
+
+.custom-check input:checked+.checkmark {
+    background-color: #eaf3ff;
+    border-color: #0088cb;
+}
+
+.custom-check input:checked+.checkmark::after {
+    display: block;
+}
+
+
+/* button */
+
+.btn-sm {
+    padding-left: var(--bs-smbtn-padding-x);
+    padding-right: var(--bs-smbtn-padding-x);
+}
+
+.form-group .input-group .form-control {
+    border-radius: 25px;
+    padding: 0.6rem 1.2rem;
+    box-shadow: var(--box-shadow1);
+    border-color: #f3f3f3;
+    border-radius: 25px;
+}
+
+.form-group.filled .form-control:focus,
+.form-group.outlined .form-control:focus,
+.form-group.standard .form-control:focus {
+    border-color: #20232d;
+}
+
+.form-floating>label {
+    top: -4px;
+}
+
+.form-floating>.form-control,
+.form-floating>.form-control-plaintext,
+.form-floating>.form-select {
+    height: calc(3rem + calc(var(--bs-border-width) * 2));
+    min-height: calc(3rem + calc(var(--bs-border-width) * 2));
+    line-height: 1.5;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.form-group.filled.active .form-floating>label {
+    color: #20232d;
+}
+
+.form-group.filled.active .form-control {
+    padding-top: 1.25rem;
+}
+
+.form-group.filled.active .form-control {
+    padding-bottom: 0.5rem;
+}

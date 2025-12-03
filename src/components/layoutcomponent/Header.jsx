@@ -21,7 +21,7 @@ const Header = () => {
 
                         {/* SEARCH BOX (HIDDEN ON MOBILE) */}
                         <Col md={6} className="d-none d-md-block">
-                            <div className="navbar-menu">
+                            <div className="navbar-menu d-flex align-items-center justify-content-center">
                                 <div className="search-container d-flex">
                                     <input
                                         type="text"

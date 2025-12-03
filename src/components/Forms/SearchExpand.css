@@ -1,0 +1,68 @@
+.search-expand-wrapper {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #d6d6d6;
+    width: 35px;
+    height: 35px;
+    padding: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    transition: all 0.35s ease;
+}
+
+
+/* Expanded wrapper */
+
+.search-expand-wrapper.open {
+    width: 210px;
+    padding: 0 6px 0px 12px;
+    border-color: #333;
+    border-radius: 25px;
+}
+
+
+/* Search icon — centered when closed */
+
+.search-icon {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35px;
+    height: 35px;
+    transition: all 0.35s ease;
+}
+
+
+/* When open → shrink + stick to left */
+
+.search-expand-wrapper.open .search-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+    transform: translateX(0);
+}
+
+
+/* Input hidden default */
+
+.search-expand-input {
+    max-width: 0;
+    opacity: 0;
+    transform: translateX(-10px);
+    border: none;
+    padding: 0px;
+    outline: none;
+    background: transparent;
+    transition: max-width 0.35s ease, opacity 0.25s ease, transform 0.35s ease;
+}
+
+
+/* Input expanded when wrapper is open */
+
+.search-expand-wrapper.open .search-expand-input {
+    max-width: 160px;
+    opacity: 1;
+    transform: translateX(0);
+}

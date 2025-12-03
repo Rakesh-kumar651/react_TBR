@@ -1,0 +1,35 @@
+.tab-card {
+    background-color: #f0f0f0 !important;
+}
+
+.custom-tabs {
+    background-color: #fff;
+    border-radius: 0 0 25px 25px;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 3px 10px -4px #ccc;
+    gap: 0.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.tab-btn {
+    background: #2f323a;
+    color: #fff;
+    border-radius: 50px;
+    padding: 8px 24px;
+    font-size: 15px;
+    border: none;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.tab-btn:hover {
+    background: #3a3d45;
+    color: #fff;
+}
+
+.tab-btn.active {
+    background: #b5ff00 !important;
+    color: #000 !important;
+    font-weight: 500;
+}

@@ -1,0 +1,82 @@
+.login-page-bg {
+    height: 100vh;
+    background-image: url(https://dev.tinkerblox.io/images/bg-login-min.jpg);
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.installer-container {
+    background-color: #fff;
+    box-shadow: var(--box-shadow1);
+    border-radius: 25px;
+    border: solid 1px #e4e4e4;
+    width: 90%;
+    margin: 1.5rem auto;
+    min-height: 90vh;
+    display: flex;
+}
+
+.login-container {
+    background-color: #fff;
+}
+
+.login-page-bg::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 100px;
+    background-image: linear-gradient(to left, #ffffff, transparent);
+}
+
+.login-page-form {
+    width: 65%;
+}
+
+.logo-text-1 {
+    font-size: 1.8rem;
+    color: #E76221;
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.logo-text-2 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+.logo-text-3 {
+    font-size: 1.8rem;
+    color: #fff;
+    margin-top: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    line-height: 1.2;
+}
+
+.highlight {
+    color: #00A7E5;
+}
+
+#logoBg {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+.signin-title {
+    font-size: 1.2rem;
+    color: #222;
+    margin: 1.5rem 0px;
+}

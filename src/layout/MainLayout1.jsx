@@ -6,22 +6,17 @@ export default function MainLayout() {
     return (
         <div className="position-relative" style={{ height: "100vh" }}>
 
-            {/* Sidebar */}
-                <Header />
-            {/* <Sidebar /> */}
-
+            {/* Header */}
+             
+        
             {/* Content area */}
             <div className="container-fluid px-0" style={{flexGrow:1}}>
 
-                {/* Header */}
-
-                {/* Page Content */}
-                {/* <div className="landing-container">
-                    <div className="main_content"> */}
+                
                     <Outlet />
 
-                    {/* </div>
-                </div> */}
+                {/* Page Content */}
+                
             </div>
         </div>
     );

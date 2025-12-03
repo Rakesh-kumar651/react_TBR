@@ -1,11 +1,25 @@
 import React from 'react'
+import Tabs from '../../components/Tabs/Tabs'
+import NewDeviceTab from '../../components/Utilites/NewDeviceTab';
+import LicenseRequestTable from '../../components/Utilites/LicenseRequestTable';
 
 const DeviceList = () => {
+  const tabData = [
+    {
+      id: "device",
+      label: "New Device",
+      content: <NewDeviceTab />,
+    },
+    {
+      id: "license",
+      label: "License Requested",
+      content: <LicenseRequestTable />,
+    }
+  ];
+
   return (
     <div>
-        <div className='d-flex align-items-center justify-content-center'>
-<h1>sasasad</h1>
-        </div>
+      <Tabs tabs={tabData} />
     </div>
   )
 }
