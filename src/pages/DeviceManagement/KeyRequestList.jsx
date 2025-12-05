@@ -57,7 +57,7 @@ const KeyRequestList = () => {
         <>
             <div className='mb-4'>
 
-                <div className='card-header d-flex justify-content-between flex-wrap gap-2'>
+                <div className='sub-card-header d-flex justify-content-between flex-wrap gap-2'>
                     <h2 className='card-title d-flex align-items-center gap-2'><img src={gatewayIcon} alt='gateway' className='card-title-img' />Key Request</h2>
                     <div class="filter-container flex-wrap">
                         <span className='d-inline-block'>
@@ -89,7 +89,7 @@ const KeyRequestList = () => {
                 </div>
             </div>
             <div>
-                <div>
+                <div className='sub-card-body'>
 
                     <DataTable
                         columns={columns}
@@ -99,8 +99,8 @@ const KeyRequestList = () => {
                         onDelete={handleDelete}
                     />
 
-                    <CustomPagination />
                 </div>
+                    <CustomPagination />
                 <ImportDevicesModal show={show}
                     onHide={() => setShow(false)}
 

@@ -18,7 +18,7 @@ export default function MainLayout() {
 
                 {/* Page Content */}
                 <div className="landing-container">
-                    <div className="main_content">
+                    <div className="main_content pb-2">
                         <Outlet />
 
                     </div>

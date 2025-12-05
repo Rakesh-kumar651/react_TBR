@@ -10,6 +10,7 @@ import KeyRequestList from "./pages/DeviceManagement/KeyRequestList.jsx";
 import DeviceStatus from "./pages/DeviceManagement/DeviceStatus.jsx";
 import LoginPage from "./pages/Auth/Login.jsx";
 import ProtectedRoute from "./layout/ProtectedRoute.jsx";
+import ConfiguratorList from "./pages/Utilities/ConfiguratorList.jsx";
 
 
 
@@ -30,7 +31,7 @@ function App() {
           </ProtectedRoute>
         }
       >
-        <Route path="/" element={<Devicemanagement />} />
+        <Route path="/device-management" element={<Devicemanagement />} />
         <Route path="/keyrequestList" element={<KeyRequestList />} />
         <Route path="/device-status" element={<DeviceStatus />} />
       </Route>
@@ -42,7 +43,8 @@ function App() {
           </ProtectedRoute>
         }
       >
-        <Route path="/utilities" element={<DeviceList />} />
+        <Route path="/" element={<DeviceList />} />
+        <Route path="/devicelist" element={<ConfiguratorList />} />
       </Route>
       
     </Routes>

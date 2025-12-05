@@ -24,8 +24,8 @@
 }
 
 .tab-btn:hover {
-    background: #3a3d45;
-    color: #fff;
+    background: #b5ff00 !important;
+    color: #000 !important;
 }
 
 .tab-btn.active {

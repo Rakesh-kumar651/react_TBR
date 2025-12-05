@@ -65,7 +65,7 @@ const LicenseRequestTable = () => {
     <div>
       <div className='mb-4'>
 
-        <div className='card-header d-flex justify-content-between flex-wrap gap-2'>
+        <div className='sub-card-header d-flex justify-content-between flex-wrap gap-2'>
           <h2 className='card-title d-flex align-items-center gap-2'><img src={gatewayIcon} alt='gateway' className='card-title-img' />Device list</h2>
           <div class="filter-container flex-wrap">
             <span className='d-inline-block'>
@@ -109,13 +109,13 @@ const LicenseRequestTable = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className='sub-card-body'>
         <DataTable
           columns={columns}
           data={tableData}
           sortfilter="check"
         />
-        <CustomPagination />
+        
         <ImportDevicesModal show={show}
           onHide={() => setShow(false)}
 
@@ -131,6 +131,7 @@ const LicenseRequestTable = () => {
           onSecondary={() => setShow(false)}
           onExtra={(id) => console.log("Extra Button Clicked:", id)} />
       </div>
+      <CustomPagination />
     </div>
   )
 }

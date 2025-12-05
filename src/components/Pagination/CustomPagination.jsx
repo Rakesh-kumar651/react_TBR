@@ -12,7 +12,7 @@ export default function CustomPagination() {
     };
 
     return (
-        <div className="d-flex gap-3 justify-content-end align-items-center flex-wrap custom-pagination">
+        <div className="px-2 d-flex gap-3 justify-content-end align-items-center flex-wrap custom-pagination">
 
             {/* Pagination */}
             <Pagination className="mb-0 ">

@@ -33,7 +33,7 @@ export default function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/utilities"
+          to="/"
           className={({ isActive }) => `app-bar ${isActive ? "active" : ""}`}
         >
           <div className="icon" style={{ width: 20 }}>

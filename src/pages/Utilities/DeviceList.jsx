@@ -2,6 +2,7 @@ import React from 'react'
 import Tabs from '../../components/Tabs/Tabs'
 import NewDeviceTab from '../../components/Utilites/NewDeviceTab';
 import LicenseRequestTable from '../../components/Utilites/LicenseRequestTable';
+import ViewModal from '../../components/Modal/ViewModal';
 
 const DeviceList = () => {
   const tabData = [
@@ -20,6 +21,7 @@ const DeviceList = () => {
   return (
     <div>
       <Tabs tabs={tabData} />
+      <ViewModal />
     </div>
   )
 }

@@ -182,9 +182,19 @@ textarea {
     width: 100%;
     min-height: calc(100vh - 112px);
     border-radius: 25px;
-    padding: 15px;
+    padding: 0px;
     background: #f8f8f8;
     box-shadow: 0px 2px 10px -4px #ccc;
+}
+
+.sub-card-header {
+    padding: 15px;
+}
+
+.sub-card-body {
+    padding: 0px 15px 0px 15px;
+    height: calc(100vh - 245px);
+    overflow: auto;
 }
 
 .header-nav-action .gobgbtn {

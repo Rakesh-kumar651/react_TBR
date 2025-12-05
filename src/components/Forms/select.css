@@ -2,14 +2,14 @@
    Custom Select Container
 ================================ */
 
-.card-header .custom-select {
+.card-header .custom-select,
+.sub-card-header .custom-select {
     width: 240px;
 }
 
 .custom-select {
     position: relative;
     width: auto;
-    font-family: "Poppins", sans-serif;
 }
 
 

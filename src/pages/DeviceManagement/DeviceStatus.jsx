@@ -8,6 +8,7 @@ import { Button } from 'react-bootstrap'
 import DataTable from '../../components/Table/DataTable'
 import DeviceKeyModal from '../../components/Modal/DeviceKeyModal'
 import ReusableSelect from '../../components/Forms/Selectbox'
+import CustomPagination from '../../components/Pagination/CustomPagination'
 const DeviceStatus = () => {
     const [show, setShow] = useState(false);
 
@@ -63,7 +64,7 @@ const DeviceStatus = () => {
         <>
             <div className='mb-4'>
 
-                <div className='card-header d-flex justify-content-between flex-wrap gap-2'>
+                <div className='sub-card-header d-flex justify-content-between flex-wrap gap-2'>
                     <h2 className='card-title d-flex align-items-center gap-2'><img src={gatewayIcon} alt='gateway' className='card-title-img' />Device Status</h2>
                     <div class="filter-container flex-wrap">
                         <span className='d-inline-block'>
@@ -108,7 +109,7 @@ const DeviceStatus = () => {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="sub-card-body">
                 <DataTable
                     columns={columns}
                     data={tableData}
@@ -117,6 +118,7 @@ const DeviceStatus = () => {
                     onDelete={handleDelete}
                 />
             </div>
+            <CustomPagination />
             <DeviceKeyModal show={show} onHide={() => setShow(false)} />
         </>
     )

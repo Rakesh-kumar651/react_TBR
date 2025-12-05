@@ -11,7 +11,7 @@ import SearchExpand from '../../components/Forms/SearchExpand'
 const Devicemanagement = () => {
     return (
         <>
-            <div className='mb-4'>
+            <div className='mb-4 sub-card-header'>
 
                 <div className='card-header d-flex justify-content-between'>
                     <h2 className='card-title d-flex align-items-center gap-2'><img src={gatewayIcon} alt='gateway' className='card-title-img' />Device Management</h2>
@@ -37,7 +37,7 @@ const Devicemanagement = () => {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className='sub-card-body'>
                 <div className='row g-4 align-items-stretch'>
                     <div className='col-xl-3 col-lg-4 col-md-6 col-sm-12'>
                         <DeviceCard badgeClass="create" badgeTitle="Create" />
@@ -56,8 +56,8 @@ const Devicemanagement = () => {
                     </div>
 
                 </div>
-                <CustomPagination />
             </div>
+                <CustomPagination />
         </>
     )
 }

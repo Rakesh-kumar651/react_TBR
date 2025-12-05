@@ -28,7 +28,7 @@ const Tabs = ({ tabs }) => {
 
             {/* TAB CONTENT */}
             <div className="layout-one-landing-container">
-                <div className="main_content">
+                <div className="main_content pb-2">
                     {tabs.find((t) => t.id === active)?.content}
 
                 </div>
