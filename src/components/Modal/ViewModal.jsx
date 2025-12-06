@@ -4,7 +4,7 @@ import { Modal } from 'react-bootstrap'
 const ViewModal = ({ show, onHide }) => {
     return (
         <>
-            <Modal show={show} onHide={onHide} centered backdrop="static" className="import-modal">
+            <Modal show={show} onHide={onHide} centered backdrop="static" className="import-modal tp-adjusto">
                 <Modal.Header closeButton>
                     <Modal.Title>View Link</Modal.Title>
                 </Modal.Header>

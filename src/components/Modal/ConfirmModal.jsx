@@ -5,7 +5,7 @@ import LoadIcon from "./../../assets/img/isometric/load-test.svg"
 const ConfirmModal = ({ confirmShow, confirmonHide }) => {
     return (
         <>
-            <Modal show={confirmShow} onHide={confirmonHide} centered backdrop="static" className="import-modal">
+            <Modal show={confirmShow} onHide={confirmonHide} centered backdrop="static" className="import-modal tp-adjusto">
                 <Modal.Header closeButton>
                 </Modal.Header>
                 <Modal.Body>

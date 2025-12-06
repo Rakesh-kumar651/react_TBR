@@ -14,7 +14,7 @@ const ClusterModal = ({ show, onHide, label, buttonText, onSubmit, inputLabel })
 
     return (
         <>
-            <Modal show={show} onHide={onHide} centered backdrop="static" className="import-modal">
+            <Modal show={show} onHide={onHide} centered backdrop="static" className="import-modal tp-adjusto">
                 <Modal.Header closeButton>
                     <Modal.Title>{label ? label : "Create Cluster"}</Modal.Title>
                 </Modal.Header>

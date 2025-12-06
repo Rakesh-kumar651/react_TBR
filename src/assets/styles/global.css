@@ -175,7 +175,9 @@ textarea {
     padding: 0.8rem;
 }
 
-
+.tp-adjusto {
+    transform: translateY(-150px) !important; /* Move modal up */
+}
 /* main content */
 
 .main_content {

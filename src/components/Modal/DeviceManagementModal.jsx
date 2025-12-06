@@ -14,7 +14,7 @@ const DeviceManagementModal = ({ show, onHide, label, buttonText, onSubmit, inpu
 
     return (
         <>
-            <Modal show={show} onHide={onHide} centered backdrop="static" className="import-modal">
+            <Modal show={show} onHide={onHide} centered backdrop="static" className="import-modal tp-adjusto">
                 <Modal.Header closeButton>
                     <Modal.Title>{label ? label : "Create Device"}</Modal.Title>
                 </Modal.Header>

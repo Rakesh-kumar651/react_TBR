@@ -12,7 +12,7 @@ const GetLicenseModal = ({ show, onHide, label, buttonText, onSubmit, inputLabel
 
     return (
         <>
-            <Modal  size="lg" show={show} onHide={onHide} centered backdrop="static" className="import-modal">
+            <Modal  size="lg" show={show} onHide={onHide} centered backdrop="static" className="import-modal tp-adjusto">
                 <Modal.Header closeButton>
                     <Modal.Title>{"Get License"}</Modal.Title>
                 </Modal.Header>
