@@ -66,7 +66,7 @@ const DeviceStatus = () => {
 
                 <div className='sub-card-header d-flex justify-content-between flex-wrap gap-2'>
                     <h2 className='card-title d-flex align-items-center gap-2'><img src={gatewayIcon} alt='gateway' className='card-title-img' />Device Status</h2>
-                    <div class="filter-container flex-wrap">
+                    <div className="filter-container flex-wrap">
                         <span className='d-inline-block'>
                             <Button size='sm' variant='dark' className='rounded-pill' onClick={() => setShow(true)} >Export devices</Button>
                         </span>

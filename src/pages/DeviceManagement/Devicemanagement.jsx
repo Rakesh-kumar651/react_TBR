@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{ useState } from 'react'
 import gatewayIcon from './../../assets/img/icons/gateway-icon.svg'
 import filterPlusIcon from './../../assets/img/icons/filter-plus.svg'
 import searchIcon from './../../assets/img/icons/search.svg'
@@ -8,16 +8,21 @@ import { Badge } from 'react-bootstrap'
 import DeviceCard from '../../components/DeviceManagement/DeviceCard'
 import CustomPagination from '../../components/Pagination/CustomPagination'
 import SearchExpand from '../../components/Forms/SearchExpand'
+import DeviceManagementModal from '../../components/Modal/DeviceManagementModal'
 const Devicemanagement = () => {
+    const [show, setShow] = useState(false);
+    const handleCreate = (value) => {
+        console.log("User entered:", value);  // you get back the value here
+    };
     return (
         <>
             <div className='mb-4 sub-card-header'>
 
                 <div className='card-header d-flex justify-content-between'>
                     <h2 className='card-title d-flex align-items-center gap-2'><img src={gatewayIcon} alt='gateway' className='card-title-img' />Device Management</h2>
-                    <div class="filter-container">
+                    <div className="filter-container">
                         <span className='d-inline-block'>
-                            <a className='actionbtn actionbtn-outline'>
+                            <a className='actionbtn actionbtn-outline' onClick={() => setShow(true)}>
                                 <img src={filterPlusIcon} alt='filter add' />
                             </a>
                         </span>
@@ -58,6 +63,14 @@ const Devicemanagement = () => {
                 </div>
             </div>
                 <CustomPagination />
+                 <DeviceManagementModal   
+                   show={show}
+                    onHide={() => setShow(false)}
+                    label="Device Creation"
+                    inputLabel="Device name"
+                    buttonText="Create"
+                    onSubmit={handleCreate} 
+                  />
         </>
     )
 }

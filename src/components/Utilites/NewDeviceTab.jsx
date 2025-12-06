@@ -31,6 +31,7 @@ const NewDeviceTab = () => {
             id: 2,
             deviceName: "Device_578742622",
             hardwareId: "xxxxxxxxxxxxxx",
+            os: "Linux Arm64",
             tag: "Linux Arm64",
             firmware: "Tbx_Firmware 2",
             architecture: "x86_64"
@@ -61,7 +62,7 @@ const NewDeviceTab = () => {
 
                 <div className='sub-card-header d-flex justify-content-between flex-wrap gap-2'>
                     <h2 className='card-title d-flex align-items-center gap-2'><img src={gatewayIcon} alt='gateway' className='card-title-img' />Device list</h2>
-                    <div class="filter-container flex-wrap">
+                    <div className="filter-container flex-wrap">
                         <span className='d-inline-block'>
                             <Button size='sm' variant='dark' className='rounded-pill' onClick={() => setShowLicense(true)} >Get license</Button>
                         </span>

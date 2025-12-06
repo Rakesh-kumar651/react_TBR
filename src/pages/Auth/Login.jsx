@@ -26,7 +26,7 @@ export default function LoginPage() {
     localStorage.setItem("token", "login-success");
 
     // Redirect to dashboard or home page
-    navigate("/");
+    navigate("/opas");
   };
 
   return (

@@ -21,7 +21,7 @@ function App() {
     <Routes>
 
       {/* Public Route */}
-      <Route path="/login" element={<LoginPage />} />
+      <Route path="/" element={<LoginPage />} />
 
       {/* Protected Routes */}
       <Route
@@ -31,9 +31,9 @@ function App() {
           </ProtectedRoute>
         }
       >
-        <Route path="/device-management" element={<Devicemanagement />} />
+        <Route path="/devicemanagement" element={<Devicemanagement />} />
         <Route path="/keyrequestList" element={<KeyRequestList />} />
-        <Route path="/device-status" element={<DeviceStatus />} />
+        <Route path="/devicestatus" element={<DeviceStatus />} />
       </Route>
 
       <Route
@@ -43,7 +43,7 @@ function App() {
           </ProtectedRoute>
         }
       >
-        <Route path="/" element={<DeviceList />} />
+        <Route path="/opas" element={<DeviceList />} />
         <Route path="/devicelist" element={<ConfiguratorList />} />
       </Route>
       

@@ -326,11 +326,11 @@ a:not([href]):hover {
     align-items: center;
 }
 
-.custom-table .table tbody>tr.active-table-row td,
+/* .custom-table .table tbody>tr.active-table-row td,
 .custom-table .table tbody>tr:hover td {
     background-color: #20232d;
     color: #fff;
-}
+} */
 
 .custom-table .table tbody>tr td {
     border: none;

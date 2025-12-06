@@ -5,16 +5,16 @@ const DeviceCard = ({ badgeClass, badgeTitle }) => {
     return (
         <>
             <div className='card asset_landing_card w-100 position-relative'>
-                <div class="top_asset_container">
-                    <div class="asset_icon_container d-flex align-items-center  justify-content-center">
+                <div className="top_asset_container">
+                    <div className="asset_icon_container d-flex align-items-center  justify-content-center">
                         <img src={routerIcon} />
                     </div>
-                    <div class="asset_content_container ms-2">
-                        <div class="asset_head_container mb-1 ">
-                            <p class="asset_head">Device 1</p>
+                    <div className="asset_content_container ms-2">
+                        <div className="asset_head_container mb-1 ">
+                            <p className="asset_head">Device 1</p>
                         </div>
-                        <div class="asset_description_container ">
-                            <p class="asset_content">SN - 5655  |  EX - 9865 </p>
+                        <div className="asset_description_container ">
+                            <p className="asset_content">SN - 5655  |  EX - 9865 </p>
                         </div>
                     </div>
                 </div>

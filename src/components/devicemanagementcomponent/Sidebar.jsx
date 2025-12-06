@@ -6,7 +6,7 @@ export default function Sidebar() {
       <div className="app-bar-container">
 
         <NavLink
-          to="/"
+          to="/devicemanagement"
           className={({ isActive }) => `app-bar ${isActive ? "active" : ""}`}
         >
           <div className="icon" style={{ width: 20 }}>
@@ -15,7 +15,7 @@ export default function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/device-status"
+          to="/devicestatus"
           className={({ isActive }) => `app-bar ${isActive ? "active" : ""}`}
         >
           <div className="icon" style={{ width: 20 }}>
