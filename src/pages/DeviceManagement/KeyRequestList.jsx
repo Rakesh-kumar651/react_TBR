@@ -103,7 +103,7 @@ const KeyRequestList = () => {
                     <CustomPagination />
                 <ImportDevicesModal show={show}
                     onHide={() => setShow(false)}
-
+                   size="lg" 
                     title="Import Devices"
 
                     primaryButtonLabel="Extract"
@@ -118,7 +118,7 @@ const KeyRequestList = () => {
                     onPrimary={() => console.log("Extract clicked")}
                     onSecondary={() => setShow(false)}
                     onExtra={(id) => console.log("Extra Button Clicked:", id)} />
-                <ConfirmModal confirmShow={confirmShow} confirmonHide={() => setconfirmShow(false)} />
+                <ConfirmModal confirmShow={confirmShow}  confirmonHide={() => setconfirmShow(false)} />
             </div>
         </>
     )

@@ -127,7 +127,7 @@ const LicenseRequestTable = () => {
 
           dropZone={true}  // enable file uploader
 
-
+        
           onPrimary={() => console.log("Extract clicked")}
           onSecondary={() => setShow(false)}
           onExtra={(id) => console.log("Extra Button Clicked:", id)} />

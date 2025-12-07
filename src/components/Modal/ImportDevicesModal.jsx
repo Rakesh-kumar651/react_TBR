@@ -45,7 +45,7 @@ const ImportDevicesModal =({
   };
 
   return (
-    <Modal show={show} onHide={onHide} centered backdrop="static" className="import-modal tp-adjusto">
+    <Modal show={show} onHide={onHide} centered backdrop="static" size="lg" className="import-modal tp-adjusto">
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
       </Modal.Header>

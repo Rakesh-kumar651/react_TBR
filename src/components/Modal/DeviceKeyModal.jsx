@@ -3,7 +3,7 @@ import { Modal, Button } from "react-bootstrap";
 
 const DeviceKeyModal = ({ show, onHide }) => {
     return (
-        <>  <Modal show={show} onHide={onHide} centered backdrop="static" className="import-modal tp-adjusto">
+        <>  <Modal show={show} onHide={onHide} centered backdrop="static" size="lg" className="import-modal tp-adjusto">
             <Modal.Header closeButton>
                 <Modal.Title>Device Keys</Modal.Title>
             </Modal.Header>

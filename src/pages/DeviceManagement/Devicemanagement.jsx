@@ -69,6 +69,7 @@ const Devicemanagement = () => {
                     label="Device Creation"
                     inputLabel="Device name"
                     buttonText="Create"
+                    
                     onSubmit={handleCreate} 
                   />
         </>

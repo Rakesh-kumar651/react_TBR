@@ -10,6 +10,9 @@ import ClusterModal from '../Modal/ClusterModal'
 import ReusableSelect from '../Forms/Selectbox'
 import GetLicenseModal from '../Modal/GetLicenseModal'
 import SearchExpand from '../Forms/SearchExpand'
+import { useSelector } from "react-redux";
+
+
 
 const NewDeviceTab = () => {
     const [show, setShow] = useState(false);
@@ -18,6 +21,8 @@ const NewDeviceTab = () => {
     const handleCreate = (value) => {
         console.log("User entered:", value);  // you get back the value here
     };
+    const token = useSelector((state) => state.auth.accessToken);
+    console.log("Access Token in NewDeviceTab:", token);
     const tableData = [
         {
             id: 1,
@@ -31,7 +36,6 @@ const NewDeviceTab = () => {
             id: 2,
             deviceName: "Device_578742622",
             hardwareId: "xxxxxxxxxxxxxx",
-            os: "Linux Arm64",
             tag: "Linux Arm64",
             firmware: "Tbx_Firmware 2",
             architecture: "x86_64"

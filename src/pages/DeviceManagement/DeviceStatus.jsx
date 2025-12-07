@@ -119,7 +119,7 @@ const DeviceStatus = () => {
                 />
             </div>
             <CustomPagination />
-            <DeviceKeyModal show={show} onHide={() => setShow(false)} />
+            <DeviceKeyModal show={show}   onHide={() => setShow(false)} />
         </>
     )
 }

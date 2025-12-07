@@ -44,10 +44,10 @@ const DataTable = ({ columns, data, onEdit, onDelete, sortfilter }) => {
                                 <th className="d-flex align-items-center">
 
 
-                                    <label class="custom-check">
+                                    <label className="custom-check">
                                         <input type="checkbox" checked={selectAll}
                                             onChange={handleSelectAll} />
-                                        <span class="checkmark"></span>
+                                        <span className="checkmark"></span>
                                     </label>
                                 </th>
                             </>
@@ -78,10 +78,10 @@ const DataTable = ({ columns, data, onEdit, onDelete, sortfilter }) => {
                             <td>
                                 {sortfilter === "check" ? (
                                     <div className="d-flex align-items-center">
-                                        <label class="custom-check">
+                                        <label className="custom-check">
                                             <input type="checkbox" checked={selectedRows.includes(row.id)}
                                                 onChange={() => handleRowSelect(row.id)} />
-                                            <span class="checkmark"></span>
+                                            <span className="checkmark"></span>
                                         </label>
 
                                     </div>
