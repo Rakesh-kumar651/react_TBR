@@ -30,7 +30,7 @@ const authSlice = createSlice({
       state.refreshToken = null;
       state.tokenExpiry = null;
       state.isAuthenticated = false;
-
+     
       localStorage.clear();
     },
   },

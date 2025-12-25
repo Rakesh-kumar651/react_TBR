@@ -1,7 +1,7 @@
 import React from 'react'
 import Tabs from '../../components/Tabs/Tabs'
-import ConfiguratorComponent from '../../components/Utilites/ConfiguratorComponent';
-import NewDeviceTab from '../../components/Utilites/NewDeviceTab';
+import ConfiguratorComponent from '../../components/opas/ConfiguratorComponent';
+import NewDeviceTab from '../../components/opas/NewDeviceTab';
 const ConfiguratorList = () => {
 
 const tabData = [

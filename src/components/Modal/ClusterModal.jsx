@@ -3,13 +3,41 @@ import { Modal, Button } from "react-bootstrap";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
 import InputField from '../Forms/InputField';
+import { useCreateDevice } from "../../hooks/opas/newDevice/useCreateDevice";
+import { useSelector } from "react-redux";
 
-const ClusterModal = ({ show, onHide, label, buttonText, onSubmit, inputLabel }) => {
-    const [clusterName, setClusterName] = useState("");
+const ClusterModal = ({ show, onHide, label,inputLabel,buttonText,keyName }) => {
+    const [Name, setName] = useState("");
+    const [errorMessage, setErrorMessage] = useState(false);
+  const token = useSelector((state) => state.auth.accessToken);
+
+  const { mutate, isLoading, isSuccess, isError, error } = useCreateDevice(keyName);
+
     const handleSubmit = () => {
-        onSubmit(clusterName);   // return value to parent
-        setClusterName("");      // clear input
-        onHide();               // close modal
+     const payload =
+    keyName === "clusterName"
+      ? { clusterName: Name, token }
+      : { groupName: Name, token };
+
+      if(!Name.trim()){
+        setErrorMessage(true);
+         return;
+        }
+
+        mutate(
+      payload,
+      {
+        // ✅ condition 2: close modal ONLY on success
+        onSuccess: () => {
+          //setShow(false);
+          onHide();
+          setName(""); 
+          setErrorMessage(false)
+        }
+      }
+    );   // return value to parent
+             // clear input
+        
     };
 
     return (
@@ -20,13 +48,24 @@ const ClusterModal = ({ show, onHide, label, buttonText, onSubmit, inputLabel })
                 </Modal.Header>
                 <Modal.Body>
                     <div className="p-3 rounded-5 bg-secondary-subtle">
-                        <InputField
-                            label={inputLabel ? inputLabel : "Cluster name"}
-                            type="text"
-                            name="clusterName"
-                            value={clusterName}
-                            onChange={(val) => setClusterName(val)}
-                        />
+                      <InputField
+  label={inputLabel || "Cluster name"}
+  type="text"
+  name={keyName || "clusterName"}
+  value={Name}
+  onChange={(val) => {
+    setName(val);
+
+    // ✅ live validation
+    if (!val.trim()) {
+      setErrorMessage(true);
+    } else {
+      setErrorMessage(false);
+    }
+  }}
+  className={errorMessage ? "validation-error" : ""}
+  color={errorMessage ? "label-error" : ""}
+/>
 
                     </div>
                 </Modal.Body>

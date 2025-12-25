@@ -273,4 +273,14 @@ textarea {
 }
 
 
+.validation-error {
+    border-color: red !important;
+    /* color: red !important; */
+}
+
+
+.custom-floating-label.label-error label {
+  color: #dc3545 !important; /* red */
+}
+
 /* device list page  end */

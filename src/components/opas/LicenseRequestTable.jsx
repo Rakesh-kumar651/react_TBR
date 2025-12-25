@@ -9,7 +9,7 @@ import DataTable from '../Table/DataTable'
 import CustomPagination from '../Pagination/CustomPagination'
 import ImportDevicesModal from '../Modal/ImportDevicesModal'
 import SearchExpand from '../Forms/SearchExpand'
-const LicenseRequestTable = () => {
+const LicenseRequestTable = (type) => {
   const [show, setShow] = useState(false);
   const tableData = [
     {

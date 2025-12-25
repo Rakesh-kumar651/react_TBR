@@ -1,69 +1,85 @@
 import React, { useState } from "react";
-import { Pagination, Button, Form, InputGroup } from "react-bootstrap";
+import { Pagination } from "react-bootstrap";
 
-export default function CustomPagination() {
-    const [page, setPage] = useState(1);
-    const totalPages = 9;
+export default function CustomPagination({
+  currentPage,
+  totalPages,
+  onPageChange
+}) {
+  const [goPage, setGoPage] = useState(currentPage);
 
-    const changePage = (num) => {
-        if (num >= 1 && num <= totalPages) {
-            setPage(num);
-        }
-    };
+  const changePage = (num) => {
+    if (num >= 1 && num <= totalPages) {
+      onPageChange(num);
+      setGoPage(num);
+    }
+  };
 
-    return (
-        <div className="px-2 d-flex gap-3 justify-content-end align-items-center flex-wrap custom-pagination">
+  //if (totalPages <= 1) return null;
 
-            {/* Pagination */}
-            <Pagination className="mb-0 ">
-                <Pagination.Prev disabled={page === 1} onClick={() => changePage(page - 1)} />
+  // visible page numbers (1–5 logic)
+  const visiblePages = [];
+  for (let i = 1; i <= Math.min(5, totalPages); i++) {
+    visiblePages.push(i);
+  }
 
-                {/* Page numbers */}
-                {[1, 2, 3, 4, 5].map((num) => (
-                    <Pagination.Item
-                        key={num}
-                        active={num === page}
-                        onClick={() => changePage(num)}
-                    >
-                        {num}
-                    </Pagination.Item>
-                ))}
+  return (
+    <div className="px-2 d-flex gap-3 justify-content-end align-items-center flex-wrap custom-pagination">
 
-                {/* Dots */}
-                <Pagination.Ellipsis disabled />
-
-                {/* Last Page */}
-                <Pagination.Item
-                    active={page === totalPages}
-                    onClick={() => changePage(totalPages)}
-                >
-                    {totalPages}
-                </Pagination.Item>
-
-                <Pagination.Next
-                    disabled={page === totalPages}
-                    onClick={() => changePage(page + 1)}
-                />
-            </Pagination>
-
-            {/* Go To Page */}
-            <div className="go-input-group"><span className="page-total"><input type="number" className="page-go-input br-none" min={1} max={9} defaultValue={1} /> / 9</span>
-                <button className="ms-2 page-go-btn">Go</button>
-            </div>
-
-            {/* <InputGroup style={{ width: "130px" }}>
-        <Form.Control
-          type="number"
-          min="1"
-          max={totalPages}
-          value={page}
-          onChange={(e) => changePage(Number(e.target.value))}
+      {/* Pagination */}
+      <Pagination className="mb-0">
+        <Pagination.Prev
+          disabled={currentPage === 1}
+          onClick={() => changePage(currentPage - 1)}
         />
-        <Button variant="primary" onClick={() => changePage(page)}>
-          Go
-        </Button>
-      </InputGroup> */}
 
-        </div>
-    );
+        {visiblePages.map((num) => (
+          <Pagination.Item
+            key={num}
+            active={num === currentPage}
+            onClick={() => changePage(num)}
+          >
+            {num}
+          </Pagination.Item>
+        ))}
+
+        {totalPages > 5 && <Pagination.Ellipsis disabled />}
+
+        {totalPages > 5 && (
+          <Pagination.Item
+            active={currentPage === totalPages}
+            onClick={() => changePage(totalPages)}
+          >
+            {totalPages}
+          </Pagination.Item>
+        )}
+
+        <Pagination.Next
+          disabled={currentPage === totalPages}
+          onClick={() => changePage(currentPage + 1)}
+        />
+      </Pagination>
+
+      {/* Go To Page */}
+      <div className="go-input-group">
+        <span className="page-total">
+          <input
+            type="number"
+            className="page-go-input br-none"
+            min={1}
+            max={totalPages}
+            value={goPage}
+            onChange={(e) => setGoPage(Number(e.target.value))}
+          />{" "}
+          / {totalPages}
+        </span>
+        <button
+          className="ms-2 page-go-btn"
+          onClick={() => changePage(goPage)}
+        >
+          Go
+        </button>
+      </div>
+    </div>
+  );
 }

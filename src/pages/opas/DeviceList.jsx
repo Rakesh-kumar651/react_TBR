@@ -1,7 +1,7 @@
 import React from 'react'
 import Tabs from '../../components/Tabs/Tabs'
-import NewDeviceTab from '../../components/Utilites/NewDeviceTab';
-import LicenseRequestTable from '../../components/Utilites/LicenseRequestTable';
+import NewDeviceTab from '../../components/opas/NewDeviceTab';
+import LicenseRequestTable from '../../components/opas/LicenseRequestTable';
 import ViewModal from '../../components/Modal/ViewModal';
 
 const DeviceList = () => {
@@ -9,12 +9,13 @@ const DeviceList = () => {
     {
       id: "device",
       label: "New Device",
-      content: <NewDeviceTab />,
+      content: <NewDeviceTab  type='newdevice'/>,
     },
     {
       id: "license",
       label: "License Requested",
-      content: <LicenseRequestTable />,
+      content: <NewDeviceTab  type='licenserequest'/>,
+      //content: <LicenseRequestTable  type='licenserequest'/>
     }
   ];
 

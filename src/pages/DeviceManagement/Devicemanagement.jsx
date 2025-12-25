@@ -8,12 +8,37 @@ import { Badge } from 'react-bootstrap'
 import DeviceCard from '../../components/DeviceManagement/DeviceCard'
 import CustomPagination from '../../components/Pagination/CustomPagination'
 import SearchExpand from '../../components/Forms/SearchExpand'
-import DeviceManagementModal from '../../components/Modal/DeviceManagementModal'
+import DeviceCreationModal from '../../components/Modal/DeviceCreationModal'
+import { useSelector,useDispatch } from "react-redux";
+import { useDeviceRetrieveAll } from "../../hooks/devicemanagement/useDeviceRetrieveAll";
+
 const Devicemanagement = () => {
+    const PAGE_SIZE = 10;
+    const [page, setPage] = useState(1);
+    const [search, setSearch] = useState("");
+    const token = useSelector((state) => state.auth.accessToken);
     const [show, setShow] = useState(false);
     const handleCreate = (value) => {
         console.log("User entered:", value);  // you get back the value here
     };
+
+     const { data, isLoading, isError } = useDeviceRetrieveAll({
+        page,
+        limit: PAGE_SIZE,
+        sortField: "CreatedAt",
+        sortOrder: "desc",
+        search,
+        token
+      });
+
+      const handleSearch = (text) => {
+    setSearch(text);
+    setPage(1); // reset page on search
+  };
+
+const tableData = data?.items || [];
+const totalPages = data?.totalPages || 0;
+
     return (
         <>
             <div className='mb-4 sub-card-header'>
@@ -27,7 +52,7 @@ const Devicemanagement = () => {
                             </a>
                         </span>
                         <span className='d-inline-block'>
-                            <SearchExpand onSearch={(text) => console.log("Search:", text)} />
+                           <SearchExpand onSearch={handleSearch} />
                         </span>
                         <span className='d-inline-block'>
                             <a className='actionbtn actionbtn-outline'>
@@ -44,10 +69,12 @@ const Devicemanagement = () => {
             </div>
             <div className='sub-card-body'>
                 <div className='row g-4 align-items-stretch'>
-                    <div className='col-xl-3 col-lg-4 col-md-6 col-sm-12'>
-                        <DeviceCard badgeClass="create" badgeTitle="Create" />
-                    </div>
-                    <div className='col-xl-3 col-lg-4 col-md-6 col-sm-12'>
+
+                 
+                        <DeviceCard badgeClass="live" badgeTitle="live" deviceData={tableData} />
+                    
+
+                    {/* <div className='col-xl-3 col-lg-4 col-md-6 col-sm-12'>
                         <DeviceCard badgeClass="ready" badgeTitle="Ready" />
                     </div>
                     <div className='col-xl-3 col-lg-4 col-md-6 col-sm-12'>
@@ -58,12 +85,14 @@ const Devicemanagement = () => {
                     </div>
                     <div className='col-xl-3 col-lg-4 col-md-6 col-sm-12'>
                         <DeviceCard badgeClass="down" badgeTitle="Down" />
-                    </div>
+                    </div> */}
 
                 </div>
             </div>
-                <CustomPagination />
-                 <DeviceManagementModal   
+                <CustomPagination currentPage={page}
+        totalPages={totalPages}
+        onPageChange={setPage}/>
+                 <DeviceCreationModal   
                    show={show}
                     onHide={() => setShow(false)}
                     label="Device Creation"

@@ -1,15 +1,18 @@
 import axios from "axios";
 
+
+const API_Login= "/auth/realms/EdgeBlox/protocol/openid-connect/token";
+
 export const loginApi = async ({ email, password }) => {
   const formData = new URLSearchParams();
   formData.append("grant_type", "password");
   formData.append("client_id", "apigateway");
-  formData.append("client_secret", "LLrlleJgJC0EKI7ASzDZFRqIl28DmMp7");
+  formData.append("client_secret", "1hTCAbBF6wZrIrpwy8xXR4uVe36odFGd");
   formData.append("username", email);
   formData.append("password", password);
 
   const response = await axios.post(
-    "http://localhost:30080/realms/EdgeBlox/protocol/openid-connect/token",
+    API_Login,
     formData,
     {
       headers: {
@@ -20,3 +23,6 @@ export const loginApi = async ({ email, password }) => {
 
   return response.data;
 };
+
+
+

@@ -4,13 +4,13 @@ import { ThemeProvider } from "./context/ThemeContext.jsx";
 import DeviceManagementLayout from "./layout/DeviceManagementLayout.jsx";
 import UtilitiesLayout from "./layout/UtilitiesLayout.jsx";
 import Dashboard from "./pages/Dashboard.jsx";
-import DeviceList from "./pages/Utilities/DeviceList.jsx";
+import DeviceList from "./pages/opas/DeviceList.jsx";
 import Devicemanagement from "./pages/DeviceManagement/Devicemanagement.jsx";
 import KeyRequestList from "./pages/DeviceManagement/KeyRequestList.jsx";
 import DeviceStatus from "./pages/DeviceManagement/DeviceStatus.jsx";
 import LoginPage from "./pages/Auth/Login.jsx";
 import ProtectedRoute from "./layout/ProtectedRoute.jsx";
-import ConfiguratorList from "./pages/Utilities/ConfiguratorList.jsx";
+import ConfiguratorList from "./pages/opas/ConfiguratorList.jsx";
 
 
 

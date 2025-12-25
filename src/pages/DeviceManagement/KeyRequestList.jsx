@@ -10,38 +10,72 @@ import ImportDevicesModal from '../../components/Modal/ImportDevicesModal'
 import ConfirmModal from '../../components/Modal/ConfirmModal'
 import CustomPagination from '../../components/Pagination/CustomPagination'
 import ReusableSelect from '../../components/Forms/Selectbox'
+import { useDeviceRetrieveAll } from "../../hooks/devicemanagement/useDeviceRetrieveAll";
+import { useSelector,useDispatch } from "react-redux";
+import SearchExpand from "../../components/Forms/SearchExpand";
+
+const PAGE_SIZE = 10;
+
 const KeyRequestList = () => {
     const [show, setShow] = useState(false);
     const [confirmShow, setconfirmShow] = useState(false);
-    const tableData = [
-        {
-            id: 1,
-            name: "20251015_1",
-            deviceName: "50",
-            status: "initiated",
-            createdDate: "02/04/2025 11:42",
-        },
-        {
-            id: 2,
-            name: "20251015_1",
-            deviceName: "10",
-            status: "create",
-            createdDate: "02/04/2025 11:42",
-        },
-        {
-            id: 2,
-            name: "20251015_1",
-            deviceName: "10",
-            status: "ready",
-            createdDate: "02/04/2025 11:42",
-        },
-    ];
+ 
+ const [selectedRows, setSelectedRows] = useState([]);
+  const [selectAll, setSelectAll] = useState(false);
+
+  const token = useSelector((state) => state.auth.accessToken);
+ const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+
+const handleSelectAll = () => {
+         
+        const newState = !selectAll;
+        const ids = tableData.map(item => item.deviceId);
+        setallIds(ids);
+        setSelectAll(newState);
+        setSelectedRows(newState ? ids : []);
+    };
+
+    const handleRowSelect = (id) => {
+        let updated;
+
+        if (selectedRows.includes(id)) {
+            updated = selectedRows.filter((rowId) => rowId !== id);
+        } else {
+            updated = [...selectedRows, id];
+        }
+
+        setSelectedRows(updated);
+
+        
+        setSelectAll(updated.length === data?.items.length);
+
+
+    };
+
+
+
+  const { data, isLoading, isError } = useDeviceRetrieveAll({
+    page,
+    limit: PAGE_SIZE,
+    sortField: "CreatedAt",
+    sortOrder: "desc",
+    search,
+    token
+  });
+
+
+
+  
+  const tableData = data?.items || [];
+  const totalPages = data?.totalPages || 0;
 
     const columns = [
         { label: "Name", key: "name" },
         { label: "Device Name", key: "deviceName" },
         { label: "Status", key: "status" },
-        { label: "Created Date", key: "createdDate" },
+        { label: "Created Date", key: "createdAt" },
         { label: "Actions", key: "actions" }
     ];
     const handleEdit = (row) => {
@@ -52,6 +86,11 @@ const KeyRequestList = () => {
     const handleDelete = (row) => {
         console.log("Delete clicked:", row);
     };
+
+    const handleSearch = (text) => {
+    setSearch(text);
+    setPage(1); // reset page on search
+  };
 
     return (
         <>
@@ -74,11 +113,12 @@ const KeyRequestList = () => {
                                 onChange={(v) => console.log("Selected:", v)}
                             />
                         </span>
-                        <span className='d-inline-block'>
+                        {/* <span className='d-inline-block'>
                             <a className='actionbtn actionbtn-outline'>
                                 <img src={searchIcon} alt='filter searchIcon' />
                             </a>
-                        </span>
+                        </span> */}
+                        <SearchExpand onSearch={handleSearch} />
                         <span className='d-inline-block'>
                             <a className='actionbtn actionbtn-outline'>
                                 <img src={acendingIcon} alt='filter sort' />
@@ -91,16 +131,14 @@ const KeyRequestList = () => {
             <div>
                 <div className='sub-card-body'>
 
-                    <DataTable
-                        columns={columns}
-                        data={tableData}
-                        sortfilter="sn"          // OR "check"
-                        onEdit={handleEdit}
-                        onDelete={handleDelete}
-                    />
+                    <DataTable columns={columns} data={tableData} sortfilter="check"  selectAll={selectAll} selectedRows={selectedRows} handleSelectAll={handleSelectAll} handleRowSelect={handleRowSelect}/>
 
                 </div>
-                    <CustomPagination />
+                    <CustomPagination
+                           currentPage={page}
+                           totalPages={totalPages}
+                           onPageChange={setPage}
+                         />
                 <ImportDevicesModal show={show}
                     onHide={() => setShow(false)}
                    size="lg" 

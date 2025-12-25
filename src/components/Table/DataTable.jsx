@@ -1,36 +1,27 @@
 import React, { useState } from "react";
 import { Table, Dropdown, ButtonGroup } from "react-bootstrap";
 import dotIcon from "../../assets/img/icons/more.svg";
-
-const DataTable = ({ columns, data, onEdit, onDelete, sortfilter }) => {
-    const [selectedRows, setSelectedRows] = useState([]);
-    const [selectAll, setSelectAll] = useState(false);
+import { useDeleteDevice } from "../../hooks/opas/newDevice/useDeleteDevice";
+import { useSelector,useDispatch } from "react-redux";
+const DataTable = ({ columns, data, sortfilter,type,selectAll,selectedRows,handleSelectAll,handleRowSelect }) => {
+    // const [selectedRows, setSelectedRows] = useState([]);
+    // const [selectAll, setSelectAll] = useState(false);
     const [activeIndex, setActiveIndex] = useState(0); // first row active
+    
+    const token = useSelector((state) => state.auth.accessToken);
+    const { mutate: deleteDevice, isLoading } = useDeleteDevice();
 
     const handleRowClick = (index) => {
         setActiveIndex(index);
     };
 
-    const handleSelectAll = () => {
-        const allIds = data.map((item) => item.id);
-        const newState = !selectAll;
+   
+  const handleDelete=(id)=>{
+      
+     deleteDevice({ id, token });
 
-        setSelectAll(newState);
-        setSelectedRows(newState ? allIds : []);
-    };
+  }
 
-    const handleRowSelect = (id) => {
-        let updated;
-
-        if (selectedRows.includes(id)) {
-            updated = selectedRows.filter((rowId) => rowId !== id);
-        } else {
-            updated = [...selectedRows, id];
-        }
-
-        setSelectedRows(updated);
-        setSelectAll(updated.length === data.length);
-    };
 
     return (
         <div className="custom-table">
@@ -62,15 +53,20 @@ const DataTable = ({ columns, data, onEdit, onDelete, sortfilter }) => {
 
 
                         {/* ---- OTHER NORMAL COLUMNS ---- */}
-                        {columns.map((col, index) => (
+                        {columns
+                        //.filter(col => type === "newdevice" ? col.key !== "status": true)
+                        .map((col, index) => (
+
                             <th key={index}>{col.label}</th>
                         ))}
                     </tr>
                 </thead>
 
                 <tbody>
-                    {data.map((row, index) => (
-                        <tr key={row.id}
+                    {data
+                    .filter(row => type === "newdevice" ? row.key !== "status": true)
+                    .map((row, index) => (
+                        <tr key={row.deviceId || row.id}
                             className={activeIndex === index ? "active-table-row" : ""}
                             onClick={() => handleRowClick(index)}
                             style={{ cursor: "pointer" }}>
@@ -79,13 +75,11 @@ const DataTable = ({ columns, data, onEdit, onDelete, sortfilter }) => {
                                 {sortfilter === "check" ? (
                                     <div className="d-flex align-items-center">
                                         <label className="custom-check">
-                                            <input type="checkbox" checked={selectedRows.includes(row.id)}
-                                                onChange={() => handleRowSelect(row.id)} />
+                                            <input type="checkbox" checked={selectedRows?selectedRows.includes(row.deviceId || row.id):false}
+                                                onChange={() => handleRowSelect(row)} />
                                             <span className="checkmark"></span>
                                         </label>
-
                                     </div>
-
 
 
                                 ) : sortfilter === "sn" ? (
@@ -95,13 +89,13 @@ const DataTable = ({ columns, data, onEdit, onDelete, sortfilter }) => {
 
                             {/* ---- DYNAMIC NORMAL COLUMNS ---- */}
                             {columns.map((col, cIndex) => {
-                                if (col.key === "status") {
-                                    return (
-                                        <td key={cIndex}>
-                                            <span className={`badge ${row.status == "Generated" ? 'live' : row.status.toLowerCase()}-badge`}>{row.status}</span>
-                                        </td>
-                                    );
-                                }
+                                // if (col.key === "status" && type==="licenserequest") {
+                                //     return (
+                                //         <td key={cIndex}>
+                                //             <span className={`badge ${row.status == "Generated" ? 'live' : row.status}-badge`}>{row.status}</span>
+                                //         </td>
+                                //     );
+                                // }
 
                                 if (col.key === "actions") {
                                     return (
@@ -115,7 +109,7 @@ const DataTable = ({ columns, data, onEdit, onDelete, sortfilter }) => {
                                                     <Dropdown.Item onClick={() => onEdit(row)}>
                                                         Edit
                                                     </Dropdown.Item>
-                                                    <Dropdown.Item onClick={() => onDelete(row)}>
+                                                    <Dropdown.Item onClick={() => handleDelete(row.deviceId || row.id)}>
                                                         Delete
                                                     </Dropdown.Item>
                                                 </Dropdown.Menu>
@@ -124,7 +118,7 @@ const DataTable = ({ columns, data, onEdit, onDelete, sortfilter }) => {
                                     );
                                 }
 
-                                return <td className="text-truncate" key={cIndex}>{row[col.key]}</td>;
+                                return <td className="text-truncate" key={cIndex}>{row[col.key] ?? "NA"}</td>
                             })}
                         </tr>
                     ))}
