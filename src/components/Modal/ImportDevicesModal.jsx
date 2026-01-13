@@ -44,7 +44,48 @@ const ImportDevicesModal =({
     dropRef.current.classList.remove("drop-hover");
   };
 
+const handlePrimaryClick = async () => {
+  if (!file) return;
+
+  try {
+    const fileData = await readJsonFile(file);
+    onPrimary(fileData);   // ✅ send parsed JSON
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+const readJsonFile = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+ if (
+      file.type === "application/json" ||
+      file.name.toLowerCase().endsWith(".json")
+    ) {
+    reader.onload = (e) => {
+      try {
+        const json = JSON.parse(e.target.result);
+        resolve(json);
+      } catch (err) {
+        reject("Invalid JSON file");
+      }
+    };
+
+    reader.onerror = () => reject("File reading failed");
+    reader.readAsText(file);
+  }
+  else {
+      resolve(file); // ✅ direct file (ZIP, CSV, XLSX, etc.)
+    }
+  });
+};
+
+
+
   return (
+
+
+
     <Modal show={show} onHide={onHide} centered backdrop="static" size="lg" className="import-modal tp-adjusto">
       <Modal.Header closeButton>
         <Modal.Title>{title}</Modal.Title>
@@ -101,7 +142,8 @@ const ImportDevicesModal =({
           size="sm"
           variant="dark"
           className="rounded-pill"
-          onClick={onPrimary}
+           onClick={handlePrimaryClick}
+           disabled={!file} 
         >
           {primaryButtonLabel}
         </Button>

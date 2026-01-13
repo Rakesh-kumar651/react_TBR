@@ -5,9 +5,9 @@ const DeviceCard = ({ deviceData, badgeClass, badgeTitle }) => {
   return (
     <>
       {deviceData?.map((data) => (
-         <div className='col-xl-3 col-lg-4 col-md-6 col-sm-12'>
+         <div  key={data.id || data.deviceId} className='col-xl-3 col-lg-4 col-md-6 col-sm-12'>
         <div
-          key={data.id || data.deviceId}
+         
           className='card asset_landing_card w-100 position-relative'
         >
           <div className="top_asset_container">

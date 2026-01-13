@@ -9,12 +9,12 @@ const DeviceList = () => {
     {
       id: "device",
       label: "New Device",
-      content: <NewDeviceTab  type='newdevice'/>,
+      content: <NewDeviceTab  tapType='newdevice'/>,
     },
     {
       id: "license",
       label: "License Requested",
-      content: <NewDeviceTab  type='licenserequest'/>,
+      content: <NewDeviceTab  tapType='licenserequest'/>,
       //content: <LicenseRequestTable  type='licenserequest'/>
     }
   ];

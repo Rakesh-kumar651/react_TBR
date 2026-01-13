@@ -2,6 +2,8 @@ import React from "react";
 import { Navbar, Container, Row, Col, Form, Button, Dropdown } from "react-bootstrap";
 import searchIcon from "../../assets/img/icons/search-icon.png"
 import notificationIcon from "../../assets/img/icons/notification-icon.png"
+import settingsIcon from "../../assets/img/icons/background-tasks.svg"
+import envelopeIcon from "../../assets/img/icons/envelope.png"
 import LogoIcon from "../../assets/img/logo/logo.png"
 const Header = () => {
     return (
@@ -37,32 +39,36 @@ const Header = () => {
 
                         {/* ACTION BUTTONS + USER MENU */}
                         <Col md={3} xs={6}>
-                            <div className="header-nav-action d-flex justify-content-end gap-3">
+                            <div className="header-nav-action d-flex justify-content-end align-items-center gap-2">
+                                 {/* 🔔 Settings BUTTON */}
+                                <Button
+                                    variant="link"
+                                    className="notifybtn actionbtn notify-actionbtn p-0 d-flex align-items-center"
+                                    onClick={() =>
+                                        console.log("Show Notifications (notificationModelList)")
+                                    }
+                                >
+                                    <img src={settingsIcon} alt="notification" />
+                                </Button> 
 
+                                {/* 🔔 NOTIFICATION BUTTON */}
+                                <Button
+                                    variant="link"
+                                    className="notifybtn actionbtn notify-actionbtn p-0 d-flex align-items-center"
+                                    onClick={() =>
+                                        console.log("Show Notifications (notificationModelList)")
+                                    }
+                                >
+                                    <img src={notificationIcon} alt="notification" />
+                                </Button>
 
-
-
-                                {/* NOTIFICATION BUTTON */}
-                                <div className="actionbtn notify-actionbtn">
-                                    <Button
-                                        variant="light"
-                                        className="notifybtn actionbtn notify-actionbtn"
-                                        onClick={() =>
-                                            console.log("Show Notifications (notificationModelList)")
-                                        }
-                                    >
-                                        <img src={notificationIcon} alt="notification" />
-                                    </Button>
-                                </div>
-
-
-                                {/* USER DROPDOWN */}
+                                {/* 👤 USER DROPDOWN */}
                                 <Dropdown align="end">
                                     <Dropdown.Toggle
-                                        variant="light"
-                                        className="d-flex align-items-center gap-2 userNavbar"
+                                        as="div"
+                                        className="p-0 d-flex align-items-center userNavbar"
                                     >
-                                        <div className="navbar-log">
+                                        <div className="navbar-log d-flex align-items-center">
                                             <div className="log-picture">R</div>
                                         </div>
                                     </Dropdown.Toggle>
@@ -72,14 +78,12 @@ const Header = () => {
                                         {/* USER EMAIL */}
                                         <div className="d-flex align-items-center gap-2 mb-2">
                                             <div className="user-picture">
-                                                <img className="picture" src="/images/envelope.png" alt="user" />
+                                                <img className="picture" src={envelopeIcon} alt="user" />
                                             </div>
-                                            <div>
-                                                <h6 className="navEmail m-0">rakesh.k@tinkerblox.io</h6>
-                                            </div>
+                                            <h6 className="navEmail m-0">rakesh.k@tinkerblox.io</h6>
                                         </div>
 
-                                        <div className="hLine my-2"></div>
+                                        <div className="hLine my-2" />
 
                                         {/* MENU ITEMS */}
                                         <Dropdown.Item href="/Profile" className="userLink">
@@ -98,7 +102,7 @@ const Header = () => {
 
                                         <Dropdown.Item href="/Swagger" className="userLink">
                                             <div className="d-flex gap-2 align-items-center">
-                                                <img className="userLinkImg" src="/images/envelope.png" alt="" />
+                                                <img className="userLinkImg" src={envelopeIcon} alt="" />
                                                 <h6 className="userLinkName m-0">Swagger</h6>
                                             </div>
                                         </Dropdown.Item>
@@ -122,6 +126,7 @@ const Header = () => {
                                                 <h6 className="userLinkName m-0">Log out</h6>
                                             </div>
                                         </Dropdown.Item>
+
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>

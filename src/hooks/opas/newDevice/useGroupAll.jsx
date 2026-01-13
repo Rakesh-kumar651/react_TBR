@@ -12,7 +12,7 @@ export const useGroupAll = ({
 }) => {
   return useQuery({
     queryKey: [
-      "Groups",
+      "groups",
       { page, limit, sortField, sortOrder, search, token }
     ],
     queryFn: opasGetGroups,

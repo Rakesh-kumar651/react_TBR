@@ -3,7 +3,7 @@ import { deviceRetrieveAll } from "../../api/auth/devicemanagement/deviceRetriev
 
 
 export const useDeviceRetrieveAll = ({
-  page = 1,
+  page,
   limit = 20,
   sortField = "CreatedAt",
   sortOrder = "desc",

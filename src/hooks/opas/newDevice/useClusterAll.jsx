@@ -12,7 +12,7 @@ export const useClusterAll = ({
 }) => {
   return useQuery({
     queryKey: [
-      "Clusters",
+      "clusters",
       { page, limit, sortField, sortOrder, search, token }
     ],
     queryFn: opasGetClusters,

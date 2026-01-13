@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Button, Col, Modal, Row, Spinner, Alert } from "react-bootstrap";
+import { Button, Col, Modal, Row, Spinner, Alert,ToastContainer } from "react-bootstrap";
 import ReusableSelect from "../Forms/Selectbox";
 import { useGroupAll } from "../../hooks/opas/newDevice/useGroupAll";
 import { useClusterAll } from "../../hooks/opas/newDevice/useClusterAll";
@@ -8,9 +8,12 @@ import InputField from '../Forms/InputField';
 import { useBulkCreateDevices } from "../../hooks/opas/newDevice/useBulkCreateDevices";
 import { useMapDevices } from "../../hooks/opas/newDevice/useMapDevices";
 import { useExportDevices } from "../../hooks/opas/newDevice/useExportDevices";
+import { AppToast } from "../../components/toast";
+
+
 const PAGE_SIZE = 1000;
 
-const GetLicenseModal = ({ show, onHide, onSubmit, buttonText,selectedRows }) => {
+const GetLicenseModal = ({ show, onHide, onSubmit, buttonText,selectedRows,totalDevices }) => {
   const token = useSelector((state) => state.auth.accessToken);
 
   const [selectedClusters, setSelectedClusters] = useState([]);
@@ -22,6 +25,11 @@ const [firmwareVersion, setfirmwareVersion] = useState("");
 const [os, setos] = useState("");
 const [architecture, setarchitecture] = useState("");
 const { mutate: exportDevices, isLoading } = useExportDevices();
+const [toast, setToast] = useState({
+    show: false,
+    message: "",
+    type: "success"
+  });
   /* ------------------ CLUSTER API ------------------ */
   const {
     data: clusterdata,
@@ -92,10 +100,42 @@ const { mutate: exportDevices, isLoading } = useExportDevices();
     { payload: data, token },
     {
         onSuccess: () => {
-          onHide();
-    }}
+             onHide();
+        
+        //setErrorMessage(false);
+        setToast({
+          show: true,
+          message: "Licence mapped successfully",
+          type: "success"
+        });
+          
+    },onError: (data) => {
+         onHide();
+        
+        //setErrorMessage(false);
+        setToast({
+          show: true,
+          message: data.response.data.message || "An error occurred",
+          type: "error"
+        });
+      }
+  
+  }
     )
-     }})
+     },
+    onError: (data) => {
+         onHide();
+        
+        //setErrorMessage(false);
+        setToast({
+          show: true,
+          message: data.response.data.message || "An error occurred",
+          type: "error"
+        });
+      }
+  
+    
+    })
   };
 
  const handleExport = () => {
@@ -127,6 +167,14 @@ const { mutate: exportDevices, isLoading } = useExportDevices();
 };
 
   return (
+      <><ToastContainer position="top-end" className="p-3">
+        <AppToast
+          show={toast.show}
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast({ ...toast, show: false })}
+        />
+      </ToastContainer>
     <Modal
       size="lg"
       show={show}
@@ -142,7 +190,7 @@ const { mutate: exportDevices, isLoading } = useExportDevices();
       <Modal.Body>
         <div className="p-3 rounded-5 bg-secondary-subtle">
           <button className="btn btn-sm btn-dark rounded-pill mb-3">
-            Device count: 10
+            Device count: {totalDevices}
           </button>
 
           {(clusterLoading || groupLoading) && (
@@ -188,11 +236,11 @@ const { mutate: exportDevices, isLoading } = useExportDevices();
     setfirmwareName(val);
 
     // ✅ live validation
-    if (!val.trim()) {
-      setErrorMessage(true);
-    } else {
-      setErrorMessage(false);
-    }
+    // if (!val.trim()) {
+    //   setErrorMessage(true);
+    // } else {
+    //   setErrorMessage(false);
+    // }
   }}
   className= ""
   color=  ""
@@ -208,11 +256,11 @@ const { mutate: exportDevices, isLoading } = useExportDevices();
     setfirmwareVersion(val);
 
     // ✅ live validation
-    if (!val.trim()) {
-      setErrorMessage(true);
-    } else {
-      setErrorMessage(false);
-    }
+    // if (!val.trim()) {
+    //   setErrorMessage(true);
+    // } else {
+    //   setErrorMessage(false);
+    // }
   }}
   className= ""
   color=  ""
@@ -228,11 +276,11 @@ const { mutate: exportDevices, isLoading } = useExportDevices();
     setos(val);
 
     // ✅ live validation
-    if (!val.trim()) {
-      setErrorMessage(true);
-    } else {
-      setErrorMessage(false);
-    }
+    // if (!val.trim()) {
+    //   setErrorMessage(true);
+    // } else {
+    //   setErrorMessage(false);
+    // }
   }}
   className= ""
   color=  ""
@@ -249,11 +297,11 @@ const { mutate: exportDevices, isLoading } = useExportDevices();
     setarchitecture(val);
 
     // ✅ live validation
-    if (!val.trim()) {
-      setErrorMessage(true);
-    } else {
-      setErrorMessage(false);
-    }
+    // if (!val.trim()) {
+    //   setErrorMessage(true);
+    // } else {
+    //   setErrorMessage(false);
+    // }
   }}
   className= ""
   color=  ""
@@ -281,6 +329,7 @@ const { mutate: exportDevices, isLoading } = useExportDevices();
         </Button>
       </Modal.Footer>
     </Modal>
+    </>
   );
 };
 

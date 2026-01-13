@@ -1,0 +1,29 @@
+.custom-alert {
+  background-color: #ffffff !important;
+  border-radius: 8px;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  font-size: 14px;
+}
+
+.alert-success-custom {
+  border-color: #28a745;
+  color: #28a745;
+}
+
+.alert-error-custom {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+.alert-warning-custom {
+  border-color: #ffc107;
+  color: #856404;
+}
+
+.alert-icon {
+  font-size: 18px;
+}

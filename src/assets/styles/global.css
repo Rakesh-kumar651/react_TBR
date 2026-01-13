@@ -176,8 +176,10 @@ textarea {
 }
 
 .tp-adjusto {
-    transform: translateY(-150px) !important; /* Move modal up */
+    transform: translateY(-150px) !important;
+    /* Move modal up */
 }
+
 /* main content */
 
 .main_content {
@@ -198,6 +200,10 @@ textarea {
     height: calc(100vh - 245px);
     overflow: auto;
 }
+
+
+
+
 
 .header-nav-action .gobgbtn {
     width: 40px;
@@ -280,7 +286,41 @@ textarea {
 
 
 .custom-floating-label.label-error label {
-  color: #dc3545 !important; /* red */
+    color: #dc3545 !important;
+    /* red */
 }
+
+.dropdown-toggle::after {
+    display: none !important;
+
+}
+
+
+.navbar-log .log-picture {
+    align-items: center;
+    background-color: #20232d;
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    font-size: 1.5rem;
+    height: 40px;
+    justify-content: center;
+    line-height: 50px;
+    margin-left: .5rem;
+    overflow: hidden;
+    width: 40px;
+    cursor: pointer;
+}
+
+.sort-icon {
+  transition: transform 0.2s ease;
+}
+.sort-icon.asc {
+  transform: rotate(180deg);
+}
+.sort-icon.desc {
+  transform: rotate(0deg);
+}
+
 
 /* device list page  end */

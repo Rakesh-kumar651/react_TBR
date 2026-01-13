@@ -10,9 +10,9 @@ export const useMapDevices = () => {
 
     onSuccess: () => {
       // refresh related data if needed
-      queryClient.invalidateQueries(["devices"]);
-      queryClient.invalidateQueries(["clusters"]);
-      queryClient.invalidateQueries(["groups"]);
+     // queryClient.invalidateQueries(["devices"]);
+     // queryClient.invalidateQueries(["clusters"]);
+     // queryClient.invalidateQueries(["groups"]);
     }
   });
 };

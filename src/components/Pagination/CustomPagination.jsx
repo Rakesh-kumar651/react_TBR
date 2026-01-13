@@ -15,7 +15,7 @@ export default function CustomPagination({
     }
   };
 
-  //if (totalPages <= 1) return null;
+  if (totalPages <= 1) return null;
 
   // visible page numbers (1–5 logic)
   const visiblePages = [];

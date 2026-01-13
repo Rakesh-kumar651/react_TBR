@@ -1,21 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
-import { opasGetDevices } from "../../../api/auth/opasdevice/opasGetDevices";
+import { opasLicenserequestedDevices } from "../../../api/auth/opasdevice/opasLicenserequestedDevices";
 
 
-export const useDevicesAll = ({
+export const useLicenserequestedDevices = ({
   page ,
   limit,
-  sortField,
+  sortField ,
   sortOrder ,
   search ,
   token
 }) => {
   return useQuery({
     queryKey: [
-      "devices",
+      "licensedevices",
       { page, limit, sortField, sortOrder, search, token }
     ],
-    queryFn: opasGetDevices,
+    queryFn: opasLicenserequestedDevices,
     enabled: !!token,   // 🔐 only run if token exists
     keepPreviousData: true,
   });
