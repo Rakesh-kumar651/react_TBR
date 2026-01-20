@@ -67,6 +67,16 @@ const DataTable = ({
   const colSpanCount =
     columns.length + (sortfilter === "check" || sortfilter === "sn" ? 1 : 0);
 
+
+    const STATUS_MAP = {
+  0: { label: "Created", className: "created-badge" },
+  1: { label: "Ready", className: "ready-badge" },
+  2: { label: "Initiated", className: "initiated-badge" },
+  3: { label: "Live", className: "live-badge" },
+  4: { label: "Down", className: "down-badge" },
+};
+
+
   return (
     <div className="custom-table">
       <Table hover responsive>
@@ -75,14 +85,14 @@ const DataTable = ({
             {/* FIRST COLUMN */}
             {sortfilter === "check" && (
               <th>
-                <label className="custom-check">
+                {/* <label className="custom-check">
                   <input
                     type="checkbox"
                     checked={selectAll}
                     onChange={handleSelectAll}
                   />
                   <span className="checkmark"></span>
-                </label>
+                </label> */}
               </th>
             )}
 
@@ -107,6 +117,8 @@ const DataTable = ({
             </tr>
           ) : (
             data.map((row, index) => (
+            
+
               <tr
                 key={row.deviceId || row.id}
                 className={activeIndex === index ? "active-table-row" : ""}
@@ -116,13 +128,14 @@ const DataTable = ({
                 {/* FIRST COLUMN CELL */}
                 <td>
                   {sortfilter === "check" && (
-                    <label className="custom-check">
+                    <label className={`custom-check ${type === "licenserequest" && !!row.licensePath==false && row.licenseRequested ? "disabled" : ""}`}>
                       <input
                         type="checkbox"
                         checked={
                           selectedRows?.includes(row.deviceId || row.id) ||
                           false
                         }
+                        disabled={type === "licenserequest" && !!row.licensePath==false && row.licenseRequested}
                         onChange={() => handleRowSelect(row)}
                       />
                       <span className="checkmark"></span>
@@ -143,16 +156,10 @@ const DataTable = ({
                   ) {
                     return (
                       <td key={cIndex}>
-                        <span
-                          className={`badge ${
-                            row.status == 1
-                              ? "live-badge"
-                              : "down-badge"
-                          }`}
-                        >
-                          {row.status == 1 ? "live" : "down"}
-                        </span>
-                      </td>
+  <span className={`badge ${STATUS_MAP[row.status]?.className || "down-badge"}`}>
+    {STATUS_MAP[row.status]?.label || "Down"}
+  </span>
+</td>
                     );
                   }
                 
@@ -188,7 +195,7 @@ const DataTable = ({
                   return type === "newdevice" &&
                     col.key === "status" ? null : (
                     <td key={cIndex} className="text-truncate">
-                      {row[col.key] ?? "NA"}
+                      {row[col.key] ?? "-"}
                     </td>
                   );
                 })}

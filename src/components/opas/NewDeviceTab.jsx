@@ -16,7 +16,7 @@ import { useDevicesAll } from "../../hooks/opas/newDevice/useDevicesAll";
 import { useLicenserequestedDevices } from "../../hooks/opas/licenseRequest/useLicenserequestedDevices";
 import { useInitializeDevice } from "../../hooks/opas/newDevice/useInitializeDevice";
 import { useImportDevices } from "../../hooks/opas/licenseRequest/useImportDevices";
-
+import ConfirmModal from "../Modal/ConfirmModal";
 import { Type } from "react-bootstrap-icons";
 
 
@@ -40,6 +40,7 @@ const NewDeviceTab = ({ tapType }) => {
   const [allIds, setallIds] = useState([])
   const { mutate, isLoadingInialize, isSuccess, isErrorInialize, error } = useInitializeDevice();
   const { mutate: importDevices, isPending, importError } = useImportDevices();
+  const [confirmShow, setconfirmShow] = useState(false);
   const [sortField, setSortField] = useState("CreatedAt");
 const [sortOrder, setSortOrder] = useState("desc"); // default
   const [toast, setToast] = useState({
@@ -47,45 +48,53 @@ const [sortOrder, setSortOrder] = useState("desc"); // default
     message: "",
     type: "success"
   });
-  const handleInitializeSubmit = () => {
-    if (!selectedRows.length) return;
-
-    const payload = tableData
-      .filter(item => selectedRows.includes(item.deviceId))
-      .map(item => ({
-        deviceId: item.deviceId,
-        deviceName: item.name,      // ✅ correct key
-        LicensePath: item.licensePath     // ✅ correct case
-      }));
-
-    mutate(
-      { payload, token },   // token only here
-      {
-        onSuccess: () => {
 
 
-          //setErrorMessage(false);
+const handleInitializeClick = () => {
+  if (selectedRows.length === 0) {
+    setToast({
+      show: true,
+      message: "Please select at least one device",
+      type: "warning",
+    });
+    return;
+  }
 
-          setToast({
-            show: true,
-            message: "Device initialize successfully",
-            type: "success"
-          });
-        },
-        onError: (data) => {
+  setconfirmShow(true); // ONLY open modal
+};
 
 
-          //setErrorMessage(false);
-          setToast({
-            show: true,
-            message: data.response.data.title || "An error occurred",
-            type: "error"
-          });
-        }
-      }
-    );
-  };
+  const handleInitializeConfirm = () => {
+  setconfirmShow(false);
 
+  const payload = tableData
+    .filter(item => selectedRows.includes(item.deviceId))
+    .map(item => ({
+      deviceId: item.deviceId,
+      deviceName: item.name,
+      LicensePath: item.licensePath,
+    }));
+
+  mutate(
+    { payload, token },
+    {
+      onSuccess: () => {
+        setToast({
+          show: true,
+          message: "Device initialized successfully",
+          type: "success",
+        });
+      },
+      onError: (error) => {
+        setToast({
+          show: true,
+          message: error?.response?.data?.title || "An error occurred",
+          type: "error",
+        });
+      },
+    }
+  );
+};
 
 
 const resetToDefault = useCallback(() => {
@@ -165,6 +174,7 @@ useEffect(() => {
   { label: "OS", key: "os" },
   { label: "Firmware", key: "firmwareName" },
   { label: "Architecture", key: "architecture" },
+  { label: "Created Date", key: "createdAt" },
   { label: "Status", key: "status" },
   { label: "Action", key: "actions" }
 ].filter(Boolean);
@@ -236,27 +246,40 @@ useEffect(() => {
                 <Button size="sm" variant="dark" className="rounded-pill" onClick={() => setShow(true)}>
                   Create cluster
                 </Button>
-                <Button size="sm" variant="dark" className="rounded-pill" onClick={() => setShowLicense(true)}>
+                <Button size="sm" variant="dark" className="rounded-pill"  onClick={() => {
+    if (selectedRows.length === 0) {
+      setToast({
+        show: true,
+        message: "Please select at least one device",
+        type: "warning",
+      });
+      return;
+    }
+
+    setShowLicense(true);
+  }}>
                   Get license
                 </Button>
-                <ReusableSelect
+                {/* <ReusableSelect
                   mode="multiple"
                   placeholder="All status"
                   options={[
                     { value: "hpc", label: "HPC" },
                     { value: "rule", label: "Rule Data" }
                   ]}
-                /></>) : (
+                /> */}
+                
+                </>) : (
               <>
                 <span className='d-inline-block'>
-                  <Button size='sm' variant='dark' className='rounded-pill' onClick={handleInitializeSubmit}>Initialize</Button>
+                  <Button size='sm' variant='dark' className='rounded-pill' onClick={handleInitializeClick}>Initialize</Button>
                 </span>
                 <span className='d-inline-block'>
                   <Button size='sm' variant='dark' className='rounded-pill' onClick={() => setImportShow(true)}>Import devices</Button>
                 </span>
 
 
-                <span className='d-inline-block'>
+                {/* <span className='d-inline-block'>
                   <ReusableSelect
                     mode="single"
                     placeholder="Select Status"
@@ -277,7 +300,7 @@ useEffect(() => {
                     ]}
                     onChange={(v) => console.log("Selected:", v)}
                   />
-                </span>
+                </span> */}
 
               </>
             )
@@ -341,6 +364,7 @@ useEffect(() => {
         onHide={() => setShowLicense(false)}
         selectedRows={selectedRows}
         totalDevices={data?.totalEntries < 10 ? "0" + data?.totalEntries || 0 : data?.totalEntries || 0}
+        onSuccess={() => setSelectedRows([])} 
       />
 
       <ImportDevicesModal
@@ -358,7 +382,11 @@ useEffect(() => {
         onPrimary={bulkImportDevices}
         onSecondary={() => setImportShow(false)}
         onExtra={(id) => console.log("Extra Button Clicked:", id)} />
-
+      <ConfirmModal 
+      confirmShow={confirmShow} 
+      confirmonHide={() => setconfirmShow(false)} 
+      onConfirm={handleInitializeConfirm}
+      />
       <ToastContainer position="top-end" className="p-3">
         <AppToast
           show={toast.show}

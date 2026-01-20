@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { Modal, Button } from "react-bootstrap";
 import LoadIcon from "./../../assets/img/isometric/load-test.svg"
 
-const ConfirmModal = ({ confirmShow, confirmonHide }) => {
+const ConfirmModal = ({ confirmShow, confirmonHide,onConfirm  }) => {
     return (
         <>
             <Modal show={confirmShow} onHide={confirmonHide} centered backdrop="static" className="import-modal tp-adjusto">
@@ -24,10 +24,10 @@ const ConfirmModal = ({ confirmShow, confirmonHide }) => {
                 <Modal.Footer className="pt-0 border-0 justify-content-center align-items-center gap-1">
                     
                         <Button size="sm" variant="outline-dark" className="rounded-pill" onClick={confirmonHide}>
-                            Cancel
+                            No
                         </Button>
-                        <Button size="sm" variant="dark" className="rounded-pill">
-                            Extract
+                        <Button size="sm" variant="dark" className="rounded-pill" onClick={onConfirm}>
+                            Yes
                         </Button>
                     
                 </Modal.Footer>

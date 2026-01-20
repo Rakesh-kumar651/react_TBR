@@ -84,9 +84,10 @@ const KeyRequestList = () => {
     const columns = [
         { label: "Group Name", key: "groupName" },
         { label: "Devices", key: "deviceCount" },
-        { label: "Status", key: "status" },
-        //{ label: "Created Date", key: "createdAt" },
-        { label: "Actions", key: "actions" }
+        { label: "Created Date", key: "createdAt" },
+        { label: "Status", key: "status" }
+        
+        // { label: "Actions", key: "actions" }
     ];
     const handleEdit = (row) => {
         console.log("Edit clicked:", row);
@@ -159,7 +160,7 @@ const KeyRequestList = () => {
                         <span className='d-inline-block'>
                             <Button size='sm' variant='dark' className='rounded-pill' onClick={() => setShow(true)}>Import devices</Button>
                         </span>
-                        <span className='d-inline-block'>
+                        {/* <span className='d-inline-block'>
                             <ReusableSelect
                                 mode="single"
                                 placeholder="All status"
@@ -169,7 +170,7 @@ const KeyRequestList = () => {
                                 ]}
                                 onChange={(v) => console.log("Selected:", v)}
                             />
-                        </span>
+                        </span> */}
                         {/* <span className='d-inline-block'>
                             <a className='actionbtn actionbtn-outline'>
                                 <img src={searchIcon} alt='filter searchIcon' />
@@ -180,10 +181,10 @@ const KeyRequestList = () => {
                                 mode="single"
                                 placeholder="Sort by"
                                 options={[
-                                    { label: "Created Date", value: "createdAt" },
-                                    { label: "Firmware Name", value: "firmwareName" },
-                                    { label: "Board Name", value: "boardName" },
-                                    { label: "OS Name", value: "osName" },
+                                    { label: "Group Name", value: "GroupName" },
+                                    // { label: "Firmware Name", value: "firmwareName" },
+                                    // { label: "Board Name", value: "boardName" },
+                                    // { label: "OS Name", value: "osName" },
                                 ]}
                                 onChange={(v) => setSortField(v.value)}
 

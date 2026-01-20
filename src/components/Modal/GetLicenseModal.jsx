@@ -13,7 +13,7 @@ import { AppToast } from "../../components/toast";
 
 const PAGE_SIZE = 1000;
 
-const GetLicenseModal = ({ show, onHide, onSubmit, buttonText,selectedRows,totalDevices }) => {
+const GetLicenseModal = ({ show, onHide, onSubmit, buttonText,selectedRows,totalDevices,onSuccess }) => {
   const token = useSelector((state) => state.auth.accessToken);
 
   const [selectedClusters, setSelectedClusters] = useState([]);
@@ -95,7 +95,7 @@ const [toast, setToast] = useState({
     mapDevices({ payload, token },
         {
          onSuccess: (data) => {
-
+   onSuccess?.();
      bulkCreate(
     { payload: data, token },
     {
@@ -115,7 +115,7 @@ const [toast, setToast] = useState({
         //setErrorMessage(false);
         setToast({
           show: true,
-          message: data.response.data.message || "An error occurred",
+          message: data.response.data[0].errors[0] || "An error occurred",
           type: "error"
         });
       }
@@ -129,7 +129,7 @@ const [toast, setToast] = useState({
         //setErrorMessage(false);
         setToast({
           show: true,
-          message: data.response.data.message || "An error occurred",
+          message: data.response.data[0] || "An error occurred",
           type: "error"
         });
       }
@@ -151,6 +151,12 @@ const [toast, setToast] = useState({
       architecture: architecture || ""
     };
 
+    mapDevices({ payload, token },
+        {
+         onSuccess: (data) => {
+
+          onSuccess?.();
+
   exportDevices(
     { payload, token },
     {
@@ -161,9 +167,31 @@ const [toast, setToast] = useState({
         link.download = "devices_export.json"; // or .csv / .xlsx
         link.click();
         onHide();
+      },
+      onError: (data) => {
+         onHide();
+        
+        //setErrorMessage(false);
+        setToast({
+          show: true,
+          message: data.response.data.message || "An error occurred",
+          type: "error"
+        });
       }
     }
   );
+},
+onError: (data) => {
+         onHide();
+        
+        //setErrorMessage(false);
+        setToast({
+          show: true,
+          message: data.response.data.message || "An error occurred",
+          type: "error"
+        });
+      }
+        });
 };
 
   return (
@@ -190,7 +218,7 @@ const [toast, setToast] = useState({
       <Modal.Body>
         <div className="p-3 rounded-5 bg-secondary-subtle">
           <button className="btn btn-sm btn-dark rounded-pill mb-3">
-            Device count: {totalDevices}
+            Device count: {selectedRows.length || 0} 
           </button>
 
           {(clusterLoading || groupLoading) && (

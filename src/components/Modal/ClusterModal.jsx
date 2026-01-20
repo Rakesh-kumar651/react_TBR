@@ -53,7 +53,7 @@ const ClusterModal = ({ show, onHide, label, inputLabel, buttonText, keyName }) 
           setErrorMessage(false);
           setToast({
             show: true,
-            message: data.response.data.message || "An error occurred",
+            message: data.response?.data[0] || data.response.data.message || "An error occurred",
             type: "error"
           });
         }

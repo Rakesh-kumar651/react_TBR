@@ -322,5 +322,14 @@ textarea {
   transform: rotate(0deg);
 }
 
+.custom-check.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
+.toast-close-icon {
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: auto;
+}
 /* device list page  end */

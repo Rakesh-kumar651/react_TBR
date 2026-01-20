@@ -73,11 +73,12 @@ const handleSortToggle = () => {
                   <ReusableSelect
                     mode="single"
                     placeholder="Sort by"
-                    options={[
-  { label: "Created Date", value: "createdAt" },
-  { label: "Firmware Name", value: "firmwareName" },
-  { label: "Board Name", value: "boardName" },
-  { label: "OS Name", value: "osName" },
+                   options={[
+                      { label: "Name", value: "Name" },
+  { label: "Created Date", value: "CreatedAt" },
+  { label: "Status", value: "Status" },
+  { label: "Cluster Name", value: "ClusterName" },
+  { label: "Group Name", value: "GroupName" },
 ]}
                     onChange={(v) => setSortField(v.value)}
                   />
