@@ -12,6 +12,19 @@ const STATUS_MAP = {
 
 
 const DeviceCard = ({ deviceData, badgeClass, badgeTitle }) => {
+  if (deviceData.length==0) {
+    return (
+      <div className="col-12">
+        <div className="text-center py-5 text-muted">
+          <h6>No devices found</h6>
+          {/* <p className="mb-0 fs-7">
+            Try adjusting your search or filters
+          </p> */}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       {deviceData?.map((data) => (

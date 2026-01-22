@@ -1,9 +1,9 @@
 import axios from "axios";
-
-const API_BASE = "/api/api/devices/device"; // adjust if needed
+import api from "../../auth/axiosInstance";
+const API_BASE = "/api/devices/device"; // adjust if needed
 
 export const downloadSetupFile = async ({ id, payload, token }) => {
-  const res = await axios.post(
+  const res = await api.post(
     `${API_BASE}/downloadSetupFile/${id}`,
     payload,
     {

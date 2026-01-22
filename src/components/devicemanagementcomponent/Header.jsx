@@ -5,7 +5,25 @@ import notificationIcon from "../../assets/img/icons/notification-icon.png"
 import settingsIcon from "../../assets/img/icons/background-tasks.svg"
 import envelopeIcon from "../../assets/img/icons/envelope.png"
 import LogoIcon from "../../assets/img/logo/logo.png"
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/slices/authSlice";
+
 const Header = () => {
+
+
+    const dispatch = useDispatch();
+
+    const handleLogout = () => {
+  // 1️⃣ Clear app state
+ dispatch(logout());               // Redux logout action
+  localStorage.clear();
+  sessionStorage.clear();
+
+  // 2️⃣ Redirect to Keycloak logout
+ window.location.replace("/"); // Adjust URL as needed
+    
+};
+
     return (
         <header className="header-content">
             <Navbar expand="md" className="navbar">
@@ -15,9 +33,9 @@ const Header = () => {
                         {/* LEFT LOGO */}
                         <Col md={3} xs={6}>
                             <div className="navbar-logo">
-                                <a href="/" className="nav-logo-link">
+                                {/* <a href="/" className="nav-logo-link"> */}
                                     <img className="logo-img" alt="logo" src={LogoIcon} />
-                                </a>
+                                {/* </a> */}
                             </div>
                         </Col>
 
@@ -119,7 +137,7 @@ const Header = () => {
                                         {/* LOGOUT */}
                                         <Dropdown.Item
                                             className="userLink text-danger"
-                                            onClick={() => window.logout?.()}
+                                            onClick={handleLogout}
                                         >
                                             <div className="d-flex gap-2 align-items-center">
                                                 <img className="userLinkImg" src="/images/logout.png" alt="" />

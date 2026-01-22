@@ -22,7 +22,7 @@ const Devicemanagement = () => {
     const [show, setShow] = useState(false);
     const navigate = useNavigate();
     const [sortField, setSortField] = useState("CreatedAt");
-const [sortOrder, setSortOrder] = useState("desc"); // default
+    const [sortOrder, setSortOrder] = useState("desc"); // default
     const handleCreate = (value) => {
         console.log("User entered:", value);  // you get back the value here
     };
@@ -31,7 +31,7 @@ const [sortOrder, setSortOrder] = useState("desc"); // default
         page,
         limit: PAGE_SIZE,
         sortField: sortField,
-    sortOrder: sortOrder,
+        sortOrder: sortOrder,
         search,
         token
     });
@@ -49,10 +49,10 @@ const [sortOrder, setSortOrder] = useState("desc"); // default
         setPage(1); // reset page on search
     };
 
-const handleSortToggle = () => {
-  setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
-  setPage(page); // reset pagination
-};
+    const handleSortToggle = () => {
+        setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+        setPage(page); // reset pagination
+    };
 
     const tableData = data?.items || [];
     const totalPages = data?.totalPages || 0;
@@ -70,19 +70,20 @@ const handleSortToggle = () => {
                             </a>
                         </span> */}
                         <span className='d-inline-block'>
-                  <ReusableSelect
-                    mode="single"
-                    placeholder="Sort by"
-                   options={[
-                      { label: "Name", value: "Name" },
-  { label: "Created Date", value: "CreatedAt" },
-  { label: "Status", value: "Status" },
-  { label: "Cluster Name", value: "ClusterName" },
-  { label: "Group Name", value: "GroupName" },
-]}
-                    onChange={(v) => setSortField(v.value)}
-                  />
-                </span>
+                            <ReusableSelect
+                                mode="single"
+                                placeholder="Sort by"
+                                options={[
+                                    { label: "Name", value: "Name" },
+                                    { label: "Created Date", value: "CreatedAt" },
+                                    { label: "Status", value: "Status" },
+                                    { label: "Cluster Name", value: "ClusterName" },
+                                    { label: "Group Name", value: "GroupName" },
+                                ]}
+
+                                onChange={(v) => setSortField(v.value)}
+                            />
+                        </span>
                         <span className='d-inline-block'>
                             <SearchExpand onSearch={handleSearch} />
                         </span>
@@ -93,8 +94,8 @@ const handleSortToggle = () => {
                         </span> */}
                         <span className='d-inline-block'>
                             <a className="actionbtn actionbtn-outline" onClick={handleSortToggle} role="button">
-              <img src={acendingIcon} alt="sort"  className={`sort-icon ${sortOrder}`}/>
-            </a>
+                                <img src={acendingIcon} alt="sort" className={`sort-icon ${sortOrder}`} />
+                            </a>
                         </span>
                     </div>
                 </div>
@@ -103,7 +104,7 @@ const handleSortToggle = () => {
                 <div className='row g-4 align-items-stretch'>
 
 
-                    <DeviceCard badgeClass="live" badgeTitle="live" deviceData={tableData} />
+                    {tableData.length != 0 && tableData ? <DeviceCard badgeClass="live" badgeTitle="live" deviceData={tableData} /> : null}
 
 
                     {/* <div className='col-xl-3 col-lg-4 col-md-6 col-sm-12'>

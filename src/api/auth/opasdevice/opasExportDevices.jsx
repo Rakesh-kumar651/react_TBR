@@ -1,10 +1,11 @@
 // api/opasdevice/opasExportDevices.js
 import axios from "axios";
+import api from "../../auth/axiosInstance";
 
-const API_BASE = "/api/api/opas/export";
+const API_BASE = "/api/opas/export";
 
 export const opasExportDevices = async ({ payload, token }) => {
-  const res = await axios.post(
+  const res = await api.post(
     `${API_BASE}/exportDevices`,
     payload,
     {

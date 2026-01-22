@@ -1,9 +1,10 @@
 import axios from "axios";
+import api from "../../auth/axiosInstance";
 
-const API_BASE = "/api/api/devices/device";
+const API_BASE = "/api/devices/device";
 
 export const updateDevice = async ({ deviceId, payload, token }) => {
-  const res = await axios.put(
+  const res = await api.put(
     `${API_BASE}/${deviceId}`,
     payload,
     {

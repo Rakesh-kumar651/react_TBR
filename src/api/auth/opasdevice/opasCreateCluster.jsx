@@ -1,9 +1,10 @@
 import axios from "axios";
+import api from "../../auth/axiosInstance";
 
-const API_OpasDevicesAll= "/api/api/opas";
+const API_OpasDevicesAll= "/api/opas";
 
 export const opasCreateCluster = async ({ clusterName, token }) => {
-  const response = await axios.post(
+  const response = await api.post(
     `${API_OpasDevicesAll}/cluster`,
     { clusterName },
     {

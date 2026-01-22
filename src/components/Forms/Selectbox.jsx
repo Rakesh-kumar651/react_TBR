@@ -11,35 +11,47 @@ const ReusableSelect = ({
 }) => {
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
+
+  // ✅ applied value
   const [selected, setSelected] = useState(mode === "single" ? null : []);
+
+  // ✅ temp value (before apply)
+  const [tempSelected, setTempSelected] = useState(
+    mode === "single" ? null : []
+  );
 
   const filtered = options.filter((o) =>
     o.label.toLowerCase().includes(search.toLowerCase())
   );
 
-  const toggle = () => setOpen(!open);
+  const toggle = () => {
+    setTempSelected(selected); // sync temp with applied
+    setOpen(!open);
+  };
 
-  const handleSelect = (item) => {
+  const handleTempSelect = (item) => {
     if (mode === "single") {
-      setSelected(item);
-      onChange?.(item);
+      setTempSelected(item);
     } else {
-      let updated = selected.includes(item.value)
-        ? selected.filter((x) => x !== item.value)
-        : [...selected, item.value];
-
-      setSelected(updated);
-      onChange?.(updated);
+      setTempSelected((prev) =>
+        prev.includes(item.value)
+          ? prev.filter((x) => x !== item.value)
+          : [...prev, item.value]
+      );
     }
   };
 
   const applySelection = () => {
+    setSelected(tempSelected);
+    onChange?.(tempSelected); // ✅ ONLY HERE
     setOpen(false);
   };
 
   const clearSelection = () => {
-    setSelected([]);
-    onChange?.([]);
+    const empty = mode === "single" ? null : [];
+    setTempSelected(empty);
+    setSelected(empty);
+    onChange?.(empty);
   };
 
   return (
@@ -52,7 +64,9 @@ const ReusableSelect = ({
             ? `${selected.length} selected`
             : placeholder}
         </span>
-        <span className="arrow"><i className="tkb-down-arrow-small"></i></span>
+        <span className="arrow">
+          <i className="tkb-down-arrow-small"></i>
+        </span>
       </div>
 
       {open && (
@@ -73,8 +87,8 @@ const ReusableSelect = ({
             {filtered.map((item) => {
               const isChecked =
                 mode === "single"
-                  ? selected?.value === item.value
-                  : selected.includes(item.value);
+                  ? tempSelected?.value === item.value
+                  : tempSelected.includes(item.value);
 
               return (
                 <li key={item.value} className="option-item">
@@ -82,7 +96,7 @@ const ReusableSelect = ({
                     <input
                       type="checkbox"
                       checked={isChecked}
-                      onChange={() => handleSelect(item)}
+                      onChange={() => handleTempSelect(item)}
                     />
                     <span className="checkmark"></span>
                     <span className="option-text">{item.label}</span>
@@ -92,15 +106,21 @@ const ReusableSelect = ({
             })}
           </ul>
 
-          {/* BUTTONS AREA */}
+          {/* BUTTONS */}
           <div className="btn-row d-flex align-items-center gap-2 justify-content-center mt-2">
             {mode === "multiple" && (
-              <button className="clear-btn btn btn-sm btn-dark rounded-pill w-50"  onClick={clearSelection}>
+              <button
+                className="btn btn-sm btn-dark rounded-pill w-50"
+                onClick={clearSelection}
+              >
                 Clear
               </button>
             )}
 
-            <button className="btn-sm btn-dark rounded-pill btn w-50" onClick={applySelection}>
+            <button
+              className="btn btn-sm btn-dark rounded-pill w-50"
+              onClick={applySelection}
+            >
               Apply
             </button>
           </div>

@@ -74,6 +74,9 @@ const DataTable = ({
   2: { label: "Initiated", className: "initiated-badge" },
   3: { label: "Live", className: "live-badge" },
   4: { label: "Down", className: "down-badge" },
+  'Generated': { label: "Generated", className: "generated-badge" },
+  'Requested': { label: "Requested", className: "requested-badge" },
+  'pending': { label: "Pending", className: "pending-badge" }
 };
 
 
@@ -100,7 +103,7 @@ const DataTable = ({
 
             {/* OTHER COLUMNS */}
             {columns.map((col, index) =>
-              type === "newdevice" && col.key === "status" ? null : (
+              (type === "newdevice" || type === "licenserequest") && col.key === "status" ? null : (
                 <th key={index}>{col.label}</th>
               )
             )}
@@ -179,20 +182,20 @@ const DataTable = ({
                                 Download Setup File
                               </Dropdown.Item>
                             )}
-                            <Dropdown.Item
+                           {/* {(type === "newdevice" || type === "licenserequest")  && ( <Dropdown.Item
                               onClick={() =>
                                 handleDelete(row.deviceId || row.id)
                               }
                             >
                               Delete
-                            </Dropdown.Item>
+                            </Dropdown.Item>)} */}
                           </Dropdown.Menu>
                         </Dropdown>
                       </td>
                     );
                   }
 
-                  return type === "newdevice" &&
+                  return (type === "newdevice" || type === "licenserequest" ) &&
                     col.key === "status" ? null : (
                     <td key={cIndex} className="text-truncate">
                       {row[col.key] ?? "-"}

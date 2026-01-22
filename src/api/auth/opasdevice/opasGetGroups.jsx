@@ -1,12 +1,13 @@
 import axios from "axios";
+import api from "../../auth/axiosInstance";
 
-const API_OpasDevicesAll= "/api/api/opas";
+const API_OpasDevicesAll= "/api/opas";
 
 
 export const opasGetGroups = async ({ queryKey }) => {
   const [_key, { page, limit, sortField, sortOrder, search, token }] = queryKey;
 
-  const response = await axios.get(`${API_OpasDevicesAll}/group`, {
+  const response = await api.get(`${API_OpasDevicesAll}/group`, {
     params: {
       page,
       limit,

@@ -1,10 +1,11 @@
 // api/opasdevice/opasBulkDevices.js
 import axios from "axios";
+import api from "../../auth/axiosInstance"; 
 
-const API_BASE = "/api/api/devices/device";
+const API_BASE = "/api/devices/device";
 
 export const opasBulkCDevices = async ({ payload, token }) => {
-  const res = await axios.post(
+  const res = await api.post(
     `${API_BASE}/bulk`,
     payload,
     {
