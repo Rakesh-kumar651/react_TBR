@@ -175,7 +175,7 @@ useEffect(() => {
   { label: "Firmware", key: "firmwareName" },
   { label: "Architecture", key: "architecture" },
   { label: "Created Date", key: "createdAt" },
-  { label: "Status", key: "status" },
+  // { label: "Status", key: "status" },
   { label: "Action", key: "actions" }
 ].filter(Boolean);
 
@@ -237,9 +237,6 @@ useEffect(() => {
           <div className="filter-container flex-wrap">
             {tapType === 'newdevice' ? (
               <>
-
-
-
                 <Button size="sm" variant="dark" className="rounded-pill" onClick={() => setShowGroup(true)}>
                   Create group
                 </Button>
@@ -312,9 +309,9 @@ useEffect(() => {
                     placeholder="Sort by"
                     options={[
   { label: "Created Date", value: "createdAt" },
-  { label: "Firmware Name", value: "firmwareName" },
-  { label: "Board Name", value: "boardName" },
-  { label: "OS Name", value: "os" },
+  // { label: "Firmware Name", value: "firmwareName" },
+  // { label: "Board Name", value: "boardName" },
+  // { label: "OS Name", value: "os" },
 ]}
                     onChange={(v) => setSortField(v.value)}
                   />

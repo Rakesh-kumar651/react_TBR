@@ -105,7 +105,7 @@ const [toast, setToast] = useState({
         //setErrorMessage(false);
         setToast({
           show: true,
-          message: "Licence mapped successfully",
+          message: "License requested successfully",
           type: "success"
         });
           

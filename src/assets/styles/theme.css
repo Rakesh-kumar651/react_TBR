@@ -195,12 +195,12 @@ a:not([href]):hover {
     color: var(--bs-badge-create-color);
 }
 
-.badge.ready-badge {
+.badge.ready-badge,.badge.pending-badge {
     background-color: var(--bs-badge-ready-bgcolor);
     color: var(--bs-badge-ready-color);
 }
 
-.badge.live-badge {
+.badge.live-badge,.badge.generated-badge {
     background-color: var(--bs-badge-live-bgcolor);
     color: var(--bs-badge-live-color);
 }
@@ -540,4 +540,17 @@ a.dropdown-item {
 
 .form-group.filled.active .form-control {
     padding-bottom: 0.5rem;
+}
+
+
+.search-clear-icon {
+  position: absolute;
+  right: 36px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #888;
+}
+
+.search-clear-icon:hover {
+  color: #000;
 }

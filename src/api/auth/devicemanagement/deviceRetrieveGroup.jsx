@@ -1,12 +1,13 @@
 import axios from "axios";
+import api from "../../auth/axiosInstance";
 
-const API_DevicesAll= "/api/api/devices";
+const API_DevicesAll= "/api/devices";
 
 
 export const deviceRetrieveGroup = async ({ queryKey }) => {
   const [_key, { page, limit, sortBy, sortOrder, search, token }] = queryKey;
 
-  const response = await axios.get(`${API_DevicesAll}/device/groups`, {
+  const response = await api.get(`${API_DevicesAll}/device/groups`, {
     params: {
       page,
       limit,

@@ -1,12 +1,13 @@
 import axios from "axios";
+import api from "../../auth/axiosInstance";
 
-const API_BASE = "/api/api/opas/device";
+const API_BASE = "/api/opas/device";
 
 export const importDevices = async ({ file, token }) => {
   const formData = new FormData();
   formData.append("zipFile", file); // 🔑 must match backend key
 
-  const response = await axios.post(
+  const response = await api.post(
     `${API_BASE}/import`,
     formData,
     {
